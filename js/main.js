@@ -6,8 +6,8 @@ function main() {
   // Initialise GL context
   const gl = canvas.getContext("webgl");
 
-  // Only continur if Webgl is available and working
-  if (gl === null){
+  // Only continue if Webgl is available and working
+  if (!gl){
     alert("Unable to initialize WebGL. Your browser is shit.");
     return;
   }
@@ -15,18 +15,25 @@ function main() {
   // Vertex shader
   const vsSource = `
     attribute vec4 aVertexPosition;
+    attribute vec4 aVertexColour;
+    
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
 
+    varying lowp vec4 vColor;
+
     void main() {
       gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+      vColor = aVertexColour;
     }
   `;
   // Fragment shader
   const fsSource = `
-    void main() {
-      gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    }
+  varying lowp vec4 vColor;
+  
+  void main() {
+    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+  }
   `;
 
   const shaderProgram = initShaderProgram(gl, vsSource, fsSource);
@@ -38,7 +45,7 @@ function main() {
     },
     uniformLocation: {
       projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
-      uModelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
+      modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
     },
   };
 
@@ -47,25 +54,6 @@ function main() {
 
   // Draw the scene
   drawScene(gl, programInfo, buffers);
-}
-
-function initBuffers(gl){
-  // Create a buffer for the square's positions
-  const positionBuffer = gl.createBuffer();
-  // Select the positionBuffer as the one to apply buffer operations to from here out
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  // Now create an array of positions for the square
-  const positions = [
-    -1.0,  1.0,
-     1.0,  1.0,
-    -1.0, -1.0,
-     1.0, -1.0,
-  ];
-  // Now pass the list of positions into WebGL to build the shape
-  // We do this by creating a FLoat32Array from the JavaScript array, then use it to fill the current buffer
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-
-  return { position: positionBuffer, };
 }
 
 window.onload = main;
