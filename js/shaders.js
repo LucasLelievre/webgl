@@ -35,6 +35,7 @@ function loadShader(gl, type, source) {
   // See if it compiled successfully
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     alert('An error occured compiling the shaders: ' + gl.getShaderInfoLog(shader));
+    gl.deleteShader(shader);
     return null;
   }
 

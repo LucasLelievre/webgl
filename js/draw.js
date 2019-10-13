@@ -54,16 +54,16 @@ function drawScene(gl, programInfo, buffers) {
     );
   }
 
-  // Tell WebGL how to pull out the colours from the colour buffer into the vertexcolour attributer
+  // Tell WebGL how to pull out the colors from the color buffer into the vertexcolor attributer
   {
     const numComponents = 4;
     const type = gl.FLOAT;
     const normalize = false;
     const stride = 0;
     const offset = 0;
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.colour);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
     gl.vertexAttribPointer(
-      programInfo.attribLocations.vertexColours,
+      programInfo.attribLocations.vertexColor,
       numComponents,
       type,
       normalize,
@@ -71,7 +71,7 @@ function drawScene(gl, programInfo, buffers) {
       offset,
     );
     gl.enableVertexAttribArray(
-      programInfo.attribLocations.vertexColours
+      programInfo.attribLocations.vertexColor
     );
   }
 
