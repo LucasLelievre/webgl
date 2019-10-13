@@ -7,7 +7,7 @@ function main() {
   const gl = canvas.getContext("webgl");
 
   // Only continue if Webgl is available and working
-  if (!gl){
+  if (!gl) {
     alert("Unable to initialize WebGL. Your browser is shit.");
     return;
   }
@@ -42,6 +42,7 @@ function main() {
     program: shaderProgram,
     attribLocations: {
       vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+      vertexColour: gl.getAttribLocation(shaderProgram, 'aVertexColor'),
     },
     uniformLocation: {
       projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),

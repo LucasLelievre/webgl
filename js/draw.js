@@ -19,18 +19,18 @@ function drawScene(gl, programInfo, buffers) {
 
   // note: glmatric.js always has the first argument as the destination to receive the result
   mat4.perspective(projectionMatrix,
-                  fieldOfView,
-                  aspect,
-                  zNear,
-                  zFar);
+    fieldOfView,
+    aspect,
+    zNear,
+    zFar);
 
   // Set the drawing position to the "identity" point, which is the center of the scene
   const modelViewMatrix = mat4.create();
 
   // Now move the drawing position a bit to where we want to start drawing the square
   mat4.translate(modelViewMatrix,   // destination matrix
-                modelViewMatrix,    // matrix to translate
-                [-0.0, 0.0, -6.0]); // actual translation
+    modelViewMatrix,    // matrix to translate
+    [-0.0, 0.0, -6.0]); // actual translation
 
   // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute
   {
@@ -38,37 +38,60 @@ function drawScene(gl, programInfo, buffers) {
     const type = gl.FLOAT;    // the data in the buffer is 32bit floats
     const normalize = false;  // don't normalize
     const stride = 0;         // how many bytes to get from one set of values to the next
-                              // 0 = use type and numComponents above
+    // 0 = use type and numComponents above
     const offset = 0;         // how many bytes inside the buffer to start from
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
-    
     gl.vertexAttribPointer(
       programInfo.attribLocations.vertexPosition,
       numComponents,
       type,
       normalize,
       stride,
-      offset);
+      offset,
+    );
     gl.enableVertexAttribArray(
-      programInfo.attribLocations.vertexPosition);
-
-    // Tell WebGL to use our program when drawing
-    gl.useProgram(programInfo.program);
-
-    // Set the shader uniforms
-    gl.uniformMatrix4fv(
-      programInfo.uniformLocation.projectionMatrix,
-      false,
-      projectionMatrix);
-    gl.uniformMatrix4fv(
-      programInfo.uniformLocation.modelViewMatrix,
-      false,
-      modelViewMatrix);
-
-    {
-      const offset = 0;
-      const vertexCount = 4;
-      gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
-    }
+      programInfo.attribLocations.vertexPosition,
+    );
   }
+
+  // Tell WebGL how to pull out the colours from the colour buffer into the vertexcolour attributer
+  {
+    const numComponents = 4;
+    const type = gl.FLOAT;
+    const normalize = false;
+    const stride = 0;
+    const offset = 0;
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.colour);
+    gl.vertexAttribPointer(
+      programInfo.attribLocations.vertexColours,
+      numComponents,
+      type,
+      normalize,
+      stride,
+      offset,
+    );
+    gl.enableVertexAttribArray(
+      programInfo.attribLocations.vertexColours
+    );
+  }
+
+  // Tell WebGL to use our program when drawing
+  gl.useProgram(programInfo.program);
+
+  // Set the shader uniforms
+  gl.uniformMatrix4fv(
+    programInfo.uniformLocation.projectionMatrix,
+    false,
+    projectionMatrix);
+  gl.uniformMatrix4fv(
+    programInfo.uniformLocation.modelViewMatrix,
+    false,
+    modelViewMatrix);
+
+  {
+    const offset = 0;
+    const vertexCount = 4;
+    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+  }
+
 }

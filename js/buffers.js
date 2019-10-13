@@ -1,12 +1,12 @@
-function initBuffers(gl){
+function initBuffers(gl) {
     // Create an array of positions for the square
     const positions = [
-      -1.0,  1.0,
-       1.0,  1.0,
-      -1.0, -1.0,
-       1.0, -1.0,
+        -1.0, 1.0,
+        1.0, 1.0,
+        -1.0, -1.0,
+        1.0, -1.0,
     ];
-    
+
     // Create a buffer for the square's positions
     const positionBuffer = gl.createBuffer();
     // Select the positionBuffer as the one to apply buffer operations to from here out
@@ -23,10 +23,10 @@ function initBuffers(gl){
     ]
     const colourBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, colourBuffer);
-    gl.bindBuffer(gl.ARRAY_BUFFER, new Float32Array(colours), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colours), gl.STATIC_DRAW);
 
     return {
         position: positionBuffer,
         colour: colourBuffer,
     };
-  }
+}
