@@ -54,8 +54,23 @@ function main() {
   // Calling the routine that builds all the objects
   const buffers = initBuffers(gl);
 
-  // Draw the scene
-  drawScene(gl, programInfo, buffers);
+
+  var then = 0.0;
+
+  function render(now) {
+    now *= 0.001; //convert in seconds
+    const deltaTime = now - then;
+    then = now;
+
+    // Draw the scene
+    drawScene(gl, programInfo, buffers, deltaTime);
+
+    requestAnimationFrame(render);
+
+  }
+
+  requestAnimationFrame(render);
+
 }
 
 window.onload = main;

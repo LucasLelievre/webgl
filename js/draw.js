@@ -1,4 +1,7 @@
-function drawScene(gl, programInfo, buffers) {
+var squareRotation = 0.0;
+
+function drawScene(gl, programInfo, buffers, deltaTime) {
+
   gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
   gl.clearDepth(1.0);                 // Clear everything
   gl.enable(gl.DEPTH_TEST);           // Enable depth testing
@@ -29,8 +32,13 @@ function drawScene(gl, programInfo, buffers) {
 
   // Now move the drawing position a bit to where we want to start drawing the square
   mat4.translate(modelViewMatrix,   // destination matrix
-    modelViewMatrix,    // matrix to translate
-    [-0.0, 0.0, -6.0]); // actual translation
+    modelViewMatrix,                // matrix to translate
+    [-0.0, 0.0, -6.0]);             // actual translation (x, y, z)
+  // Rotate the thing !
+  mat4.rotate(modelViewMatrix,      // Destination matrix
+    modelViewMatrix,                // matrix to rotate
+    squareRotation,                 // amount to rotate in radians
+    [0, 0, 1]);                     // axisof rotation
 
   // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute
   {
@@ -93,5 +101,8 @@ function drawScene(gl, programInfo, buffers) {
     const vertexCount = 4;
     gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
   }
+
+
+  squareRotation += deltaTime;
 
 }
