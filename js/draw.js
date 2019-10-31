@@ -39,10 +39,14 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     modelViewMatrix,                // matrix to rotate
     squareRotation,                 // amount to rotate in radians
     [0, 0, 1]);                     // axisof rotation
+  mat4.rotate(modelViewMatrix,  // destination matrix
+    modelViewMatrix,  // matrix to rotate
+    squareRotation * .7,// amount to rotate in radians
+    [0, 1, 0]);       // axis to rotate around (X)
 
   // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute
   {
-    const numComponents = 2;  // pull out 2 values per iteration
+    const numComponents = 3;  // pull out 2 values per iteration
     const type = gl.FLOAT;    // the data in the buffer is 32bit floats
     const normalize = false;  // don't normalize
     const stride = 0;         // how many bytes to get from one set of values to the next
@@ -83,6 +87,9 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     );
   }
 
+  // Tell WebGL which indices to use to index the vertices
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
+
   // Tell WebGL to use our program when drawing
   gl.useProgram(programInfo.program);
 
@@ -97,11 +104,11 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     modelViewMatrix);
 
   {
+    const vertexCount = 36;
+    const type = gl.UNSIGNED_SHORT;
     const offset = 0;
-    const vertexCount = 4;
-    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+    gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
   }
-
 
   squareRotation += deltaTime;
 
