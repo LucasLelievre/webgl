@@ -1,4 +1,4 @@
-class WorldObject {
+class WorldElement {
     /**
      * Create an element tht will be part of the game
      * @param {int} x position X
@@ -13,13 +13,13 @@ class WorldObject {
     }
 
     /**
-     * Create and add a new object in the game world
-     * @param {int} x position of the new object
-     * @param {int} y position y of the new object
-     * @param {int} type type of the new object
+     * Create and add a new element in the game world
+     * @param {int} x position of the new element
+     * @param {int} y position y of the new element
+     * @param {int} type type of the new element
      */
-    addWorldObject(x, y, type){
-        this.next !== null ? this.next.addWorldObject(x, y, type) : this.next = new WorldObject(x, y, type);
+    addWorldElement(x, y, type){
+        this.next !== null ? this.next.addWorldElement(x, y, type) : this.next = new WorldElement(x, y, type);
     }
 
     /**
@@ -28,8 +28,8 @@ class WorldObject {
      * @param {int} y position y
      * @returns The element's type
      */
-    getWorldObjectType (x, y) {
-        return (this.posX == x && this.posY == Y) ? this.type : this.next.getType(x, y);
+    getWorldElementType (x, y) {
+        return (this.posX == x && this.posY == Y) ? this.type : this.next.getWorldElementType(x, y);
     }
 
     /**
@@ -37,11 +37,11 @@ class WorldObject {
      * @param {int} x position x
      * @param {int} y position y
      */
-    removeWorldObject(x, y){
-        if (this.next !== null && this.next.posX == x && this.next.posY == y) { // le suivant est il celui recherché ?
+    removeWorldElement(x, y){
+        if (this.next !== null && this.next.posX == x && this.next.posY == y) {
             this.next.next !== null ? this.next = this.next.next : this.next = null;
-        } else { // sinon on continue à chercher
-            this.next.removeWorldObject(x, y);
+        } else {
+            this.next.removeWorldElement(x, y);
         }
     }
 
