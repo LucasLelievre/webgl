@@ -55,7 +55,10 @@ function main() {
 
   // Calling the routine that builds all the objects
   const buffers = initBuffers(gl);
-  // TODO call gameWorld.init();
+  // Create a game world
+  gameWorld = new GameWorld();
+  // Create the game's elements
+  gameWorld.init();
 
   var lastTime = 0.0;
   function render(newTime) {
@@ -65,6 +68,8 @@ function main() {
 
     // Draw the scene
     drawScene(gl, programInfo, buffers, deltaTime);
+    // Draw the game's elements
+    //gameWorld.draw();
 
     // call a new frame
     requestAnimationFrame(render);
