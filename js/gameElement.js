@@ -1,4 +1,5 @@
 class WorldElement {
+
     /**
      * Create an element tht will be part of the game
      * @param {int} x position X

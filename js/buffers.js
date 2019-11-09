@@ -69,7 +69,8 @@ function initBuffers(gl) {
     const indexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
 
-    // This array defines each faces as two triangles, using the indices into the vertex array to specify each triangle's position
+    // This array defines each faces as two triangles,
+    // using the indices into the vertex array to specify each triangle's position
     const indices = [
         0, 1, 2,        0, 2, 3,    // Front
         4, 5, 6,        4, 6, 7,    // back

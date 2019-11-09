@@ -1,14 +1,16 @@
-//
-// Starts here
-//
+/**
+ * The fonction that starts it all
+ */
 function main() {
+  // the canvas that will be drawn on
   const canvas = document.querySelector("#glCanvas");
   // Initialise GL context
   const gl = canvas.getContext("webgl");
 
   // Only continue if Webgl is available and working
   if (!gl) {
-    alert("Unable to initialize WebGL. Your browser is shit.");
+    alert("Unable to initialize WebGL. Your browser maybe too old.");
+    //TODO quelque chose pour les navigateurs trop vieux
     return;
   }
 
@@ -53,24 +55,24 @@ function main() {
 
   // Calling the routine that builds all the objects
   const buffers = initBuffers(gl);
+  // TODO call gameWorld.init();
 
-
-  var then = 0.0;
-
-  function render(now) {
-    now *= 0.001; //convert in seconds
-    const deltaTime = now - then;
-    then = now;
+  var lastTime = 0.0;
+  function render(newTime) {
+    newTime *= 0.001; //convert in seconds
+    const deltaTime = newTime - lastTime
+    lastTime = newTime;
 
     // Draw the scene
     drawScene(gl, programInfo, buffers, deltaTime);
 
+    // call a new frame
     requestAnimationFrame(render);
-
   }
 
+  // Call a new frame
   requestAnimationFrame(render);
-
 }
 
+// GO
 window.onload = main;

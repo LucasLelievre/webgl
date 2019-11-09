@@ -1,4 +1,11 @@
 class GameWorld {
+
+    init(){
+        // Here are the elements that will be seen in the game
+
+        this.addWorldElement(0, 0, 0); // a wall at (0,0)
+    }
+    
     /**
      * Create a game world
      */
