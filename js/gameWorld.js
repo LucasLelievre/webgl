@@ -1,55 +1,53 @@
 class GameWorld {
-    
+    /**
+     * Create a game world
+     */
     constructor() {
         this.worldObject = null;
     }
 
-    // Add an element in the game
+    /**
+     * Add an element in the game
+     * @param {int} x position X
+     * @param {int} y position y
+     * @param {int} type type of the element
+     */
     addWorldObject (x, y, type) {
-        const newObject = new WorldObject(x, y, type);
-        if (this.worldObject !== null) {
-            let current = this.worldObject;
-            while (current.next !== null) {
-                current = current.next;
-            }
-            current.next = newObject;
-        } else {
-            this.worldObject = newObject;
-        }
+        this.worldObject !== null ? this.worldObject.addWorldObject(x, y, type)
+                                  : this.worldObject = new WorldObject(x, y, type);
     }
 
-    // get a element's type from position
+    /**
+     * Get a element's type from position
+     * @param {int} x position x of the element
+     * @param {int} y position y of the element
+     * @returns the element's type
+     */
     getWorldObjectType (x, y) {
-        let current = this.worldObject;
-
-        while (current !== null || (current.posX != x && current.posY != y)){
-            current = current.next;
-        }
-
-        return current !== null ? current.getType() : null;
+        return this.worldObject !== null ? this.worldObject.getType(x, y) : null;
     }
 
-    // draw the game elements
+    /**
+     * remove an element from the game
+     * @param {int} x position x
+     * @param {int} y position y
+     */
+    removeWorldObject (x, y) {
+        if (this.worldObject.posX != x && this.worldObject.posY != y) {
+            this.worldObject.removeWorldObject(x, y)
+        } else {
+            if (this.worldObject.next !== null) {
+                this.worldObject = this.worldObject.next;
+            } else {
+                this.worldObject = null;
+            }
+        }
+    }
+
+    /**
+     * Draw all the game's element
+     */
     draw () {
         this.worldObject.draw();
-    }
-}
-
-class WorldObject {
-    constructor (x, y, type) {
-        this.posX = x;
-        this.posY = y;
-        this.type = type;
-        this.next = null;
-    }
-
-    getType () {
-        return this.type;
-    }
-
-    draw () {
-        //draw your stuff
-
-        if (this.next !== null) this.next.draw();
     }
 }
