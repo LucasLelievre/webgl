@@ -1,4 +1,4 @@
-class WorldElement {
+class GameElement {
 
     /**
      * Create an element tht will be part of the game
@@ -19,8 +19,8 @@ class WorldElement {
      * @param {int} y position y of the new element
      * @param {int} type type of the new element
      */
-    addWorldElement(x, y, type){
-        this.next !== null ? this.next.addWorldElement(x, y, type) : this.next = new WorldElement(x, y, type);
+    addGameElement(x, y, type){
+        this.next !== null ? this.next.addGameElement(x, y, type) : this.next = new GameElement(x, y, type);
     }
 
     /**
@@ -29,8 +29,8 @@ class WorldElement {
      * @param {int} y position y
      * @returns The element's type
      */
-    getWorldElementType (x, y) {
-        return (this.posX == x && this.posY == Y) ? this.type : this.next.getWorldElementType(x, y);
+    getGameElementType (x, y) {
+        return (this.posX == x && this.posY == Y) ? this.type : this.next.getGameElementType(x, y);
     }
 
     /**
@@ -38,11 +38,11 @@ class WorldElement {
      * @param {int} x position x
      * @param {int} y position y
      */
-    removeWorldElement(x, y){
+    removeGameElement(x, y){
         if (this.next !== null && this.next.posX == x && this.next.posY == y) {
             this.next.next !== null ? this.next = this.next.next : this.next = null;
         } else {
-            this.next.removeWorldElement(x, y);
+            this.next.removeGameElement(x, y);
         }
     }
 
