@@ -1,8 +1,10 @@
 var squareRotation = 0.0;
 
 function drawScene(gl, programInfo, buffers, deltaTime) {
+  gl.canvas.width  = window.innerWidth;
+  gl.canvas.height = window.innerHeight;
 
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
+  gl.clearColor(0.0, 0.0, 0.0, 0.1);  // Clear to black, fully opaque
   gl.clearDepth(1.0);                 // Clear everything
   gl.enable(gl.DEPTH_TEST);           // Enable depth testing
   gl.depthFunc(gl.LEQUAL);            //
@@ -11,11 +13,12 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // Create a perspective matrix, a special matrix that is used to simulate the distortion of perspective in camera
-  // Our fiekd of view is 45 degrees, with a width/height ratio that matched the display of the canvas
+  // Our field of view is 45 degrees, with a width/height ratio that matched the display of the canvas
   // And we only want to see objects between 0.1 units and 100 units away from the camera
 
   const fieldOfView = 45 * Math.PI / 180; // in radians
-  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+  //const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+  const aspect = window.innerWidth / window.innerHeight;
   const zNear = 0.1;
   const zFar = 100.0;
   const projectionMatrix = mat4.create();
@@ -110,6 +113,6 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
   }
 
+  // update the rotation
   squareRotation += deltaTime;
-
 }

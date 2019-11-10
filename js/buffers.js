@@ -66,9 +66,6 @@ function initBuffers(gl) {
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
-    const indexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-
     // This array defines each faces as two triangles,
     // using the indices into the vertex array to specify each triangle's position
     const indices = [
@@ -80,7 +77,8 @@ function initBuffers(gl) {
         20, 21, 22,     20, 22, 23, // left
     ];
 
-    // Now send the elements array to GL
+    const indexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 
     return {
