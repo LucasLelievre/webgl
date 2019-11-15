@@ -11,11 +11,14 @@
         border: 0;
         overflow: hidden; /*  Disable scrollbars */
         display: block;  /* No floating content on sides */
+        cursor: none;
       }
     </style>
   </head>
   <body>
     <canvas id="glCanvas" width="500" height="500"></canvas>
+
+    <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 
     <script src="js/gl-matrix.js"></script>
     <script src="js/gameElement.js"></script>
