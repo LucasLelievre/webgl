@@ -1,3 +1,7 @@
+/**
+ * initialize the buffers in buffers.js
+ * @param {gl context} gl 
+ */
 function initBuffers(gl) {
     // Create an array of positions for the square
     const positions = [

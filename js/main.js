@@ -14,6 +14,7 @@ function main() {
     return;
   }
 
+  // TODO put the shaders out of there
   // Vertex shader
   const vsSource = `
     attribute vec4 aVertexPosition;

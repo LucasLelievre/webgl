@@ -8,7 +8,7 @@ class GameWorld {
 
         //this.setWorldSize();
 
-        console.log("The game world has been initialized");
+        console.log("The game world has been initialized.");
     }
 
     /**
@@ -57,7 +57,9 @@ class GameWorld {
         }
     }
 
-    //TODO
+    /**
+     * // TODO set world size
+     */
     /*setWorldSize(){
         this.gameElement.setWorldSize();
     }*/
@@ -66,6 +68,6 @@ class GameWorld {
      * Draw all the game's element
      */
     draw () {
-        this.gameElement.draw();
+        this.gameElement.draw(gl, programInfo, buffers, deltaTime);
     }
 }

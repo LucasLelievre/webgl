@@ -49,9 +49,9 @@ class GameElement {
     /**
      * Draw the element and the next ones
      */
-    draw () {
+    draw (deltaTime) {
         //draw your stuff
 
-        if (this.next !== null) this.next.draw();
+        if (this.next !== null) this.next.draw(gl, programInfo, buffers, deltaTime);
     }
 }
