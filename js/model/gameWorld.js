@@ -3,7 +3,7 @@ class GameWorld {
     init(){
         // Here are the elements that will be seen in the game
 
-        this.addGameElement(0, 0, 0); // a wall at (0,0)
+        this.addGameElement(new Wall(0, 0)); // a wall at (0,0)
 
 
         //this.setWorldSize();
@@ -15,7 +15,7 @@ class GameWorld {
      * Create a game world
      */
     constructor() {
-        this.gameElement = null;
+        //TODO create a list for the elements
         //this.sizeX = 0;
         //this.sizeY = 0;
     }
@@ -26,11 +26,10 @@ class GameWorld {
      * @param {int} y position y
      * @param {int} type type of the element
      */
-    addGameElement (x, y, type) {
-        if (x > this.sizeX) this.sizeX = x;
-        if (y > this.sizeY) this.sizeY = y;
-        this.gameElement !== null ? this.gameElement.addGameElement(x, y, type)
-                                  : this.gameElement = new GameElement(x, y, type);
+    addGameElement (gameElement) {
+        //if (x > this.sizeX) this.sizeX = x;
+        //if (y > this.sizeY) this.sizeY = y;
+        //gameElements.add(gameElement);
     }
 
     /**
@@ -40,7 +39,7 @@ class GameWorld {
      * @returns the element's type
      */
     getGameElementType (x, y) {
-        return this.gameElement !== null ? this.gameElement.getType(x, y) : null;
+        //return the elements at the pos
     }
 
     /**
@@ -50,24 +49,20 @@ class GameWorld {
      */
     removeGameElement (x, y) {
         // TODO reduce the size if needed
-        if (this.gameElement.posX != x && this.gameElement.posY != y) {
-            this.gameElement.removeGameElement(x, y)
-        } else {
-            this.gameElement = this.gameElement.next !== null ? this.gameElement.next : null;
-        }
+        // TODO remove the elements
     }
 
     /**
-     * // TODO set world size
+     * Set world size based on the positions of the elements
      */
-    /*setWorldSize(){
-        this.gameElement.setWorldSize();
-    }*/
+    setWorldSize(){
+        // TODO set the world size
+    }
 
     /**
-     * Draw all the game's element
+     * Draw all the game's elements
      */
     draw () {
-        this.gameElement.draw(gl, programInfo, buffers, deltaTime);
+        // TODO call all elements' draw function
     }
 }
