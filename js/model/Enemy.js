@@ -8,14 +8,16 @@ class Enemy extends GameElement {
     }
 
     /**
-     * Update the player
+     * Updates the element since the last frame
+     * @param {float} deltaTime time elapsed since the last frame
      */
     update(deltaTime){
         // Update the element
     }
 
     /**
-     * Draw the player
+     * Draws the element
+     * @param {float} deltaTime time elapsed since the last frame
      */
     draw(deltaTime) {
         // Draw your stuff

@@ -1,18 +1,26 @@
 class Wall extends GameElement {
-	
+
+    /**
+     * Creates a Wall
+     * @param {int} x position on the X axis
+     * @param {int} y position on the Y axis
+     */
 	constructor(x, y){
         super(x, y)
     }
 
     /**
-     * Update the player
+     * Updates the element since the last frame
+     * @param {float} deltaTime time elapsed since the last frame
      */
     update(deltaTime){
         // Update the element
+        // To be honest, not much to do.
     }
 
     /**
-     * Draw the player
+     * Draws the element
+     * @param {float} deltaTime time elapsed since the last frame
      */
     draw(deltaTime) {
         // Draw your stuff
