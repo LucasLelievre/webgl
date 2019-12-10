@@ -16,8 +16,8 @@ class GameWorld {
      */
     constructor() {
         //TODO create a list for the elements
-        //this.sizeX = 0;
-        //this.sizeY = 0;
+        //this.width = 0;
+        //this.height = 0;
     }
 
     /**
@@ -27,8 +27,7 @@ class GameWorld {
      * @param {int} type type of the element
      */
     addGameElement (gameElement) {
-        //if (x > this.sizeX) this.sizeX = x;
-        //if (y > this.sizeY) this.sizeY = y;
+        this.setWorldSize(gameElement.getSize().x, gameElement.getSize().y);
         //gameElements.add(gameElement);
     }
 
@@ -56,6 +55,8 @@ class GameWorld {
      * Set world size based on the positions of the elements
      */
     setWorldSize(){
+        //if (x > this.width) this.width = x;
+        //if (y > this.height) this.height = y;
         // TODO set the world size
     }
 
@@ -64,5 +65,6 @@ class GameWorld {
      */
     draw () {
         // TODO call all elements' draw function
+        //element.draw(this.width, this.height)
     }
 }
