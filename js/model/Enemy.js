@@ -1,4 +1,4 @@
-class Enemy extends GameElement {
+class Enemy extends Entity {
 	
 	constructor(x, y){
         super(x, y)
@@ -19,7 +19,7 @@ class Enemy extends GameElement {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    draw(deltaTime) {
+    draw(width, height) {
         // Draw your stuff
     }
 }

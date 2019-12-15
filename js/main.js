@@ -5,10 +5,10 @@ function main() {
   // the canvas that will be drawn on
   const canvas = document.querySelector("#glCanvas");
   // Initialise GL context
-  const gl = canvas.getContext("webgl");
+  const glContext = canvas.getContext("webgl");
 
   // Only continue if Webgl is available and working
-  if (!gl) {
+  if (!glContext) {
     alert("Unable to initialize WebGL. Your browser maybe too old.");
     //TODO quelque chose pour les navigateurs trop vieux
     return;
@@ -40,44 +40,44 @@ function main() {
   }
   `;
 
-  const shaderProgram = initShaderProgram(gl, vsSource, fsSource);
+  const shaderProgram = initShaderProgram(glContext, vsSource, fsSource);
 
   const programInfo = {
     program: shaderProgram,
     attribLocations: {
-      vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
-      vertexColor: gl.getAttribLocation(shaderProgram, 'aVertexColor'),
+      vertexPosition: glContext.getAttribLocation(shaderProgram, 'aVertexPosition'),
+      vertexColor: glContext.getAttribLocation(shaderProgram, 'aVertexColor'),
     },
     uniformLocation: {
-      projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
-      modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
+      projectionMatrix: glContext.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
+      modelViewMatrix: glContext.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
     },
   };
 
   // Calling the routine that builds all the objects
-  const buffers = initBuffers(gl);
+  const buffers = initBuffers(glContext);
   // Create a game world
   gameWorld = new GameWorld();
   // Create the game's elements
   gameWorld.init();
 
   var lastTime = 0.0;
-  function render(newTime) {
+  function update(newTime) {
     newTime *= 0.001; //convert in seconds
     const deltaTime = newTime - lastTime
     lastTime = newTime;
 
     // Draw the scene
-    drawScene(gl, programInfo, buffers, deltaTime);
+    //drawScene(glContext, programInfo, buffers, deltaTime);
     // Draw the game's elements
-    //gameWorld.draw();
+    gameWorld.render(glContext, buffers, programInfo);
 
     // call a new frame
-    requestAnimationFrame(render);
+    requestAnimationFrame(update);
   }
 
   // Call a new frame
-  requestAnimationFrame(render);
+  requestAnimationFrame(update);
 }
 
 // GO

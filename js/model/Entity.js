@@ -1,4 +1,4 @@
-class GameElement {
+class Entity {
 
     /**
      * Create an element tht will be part of the game

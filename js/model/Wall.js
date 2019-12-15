@@ -1,4 +1,4 @@
-class Wall extends GameElement {
+class Wall extends Entity {
 
     /**
      * Creates a Wall
@@ -22,7 +22,7 @@ class Wall extends GameElement {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    draw(deltaTime) {
+    draw(width, height) {
         // Draw your stuff
     }
 }
