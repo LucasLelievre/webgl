@@ -3,7 +3,7 @@ class Player extends Entity {
     constructor(x, y) {
         super(x, y)
         this.hp = 3;
-        this.dir = [1, 0];
+        this.dir = vec2.fromValues(1, 0);
     }
 
     /**
@@ -18,11 +18,11 @@ class Player extends Entity {
      * Draws the entity
      * @param {float} deltaTime time elapsed since the last frame
      */
-    draw(gl) {
+    draw(gl, modelViewMatrix) {
         // alright, lets draw some shit
 
         // Set the drawing position to the "identity" point, which is the center of the scene
-        const modelViewMatrix = mat4.create();
+        //  const modelViewMatrix = mat4.create();
 
         // Now move the drawing position a bit to where we want to start drawing the square
         mat4.translate(modelViewMatrix,   // destination matrix

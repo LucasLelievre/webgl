@@ -103,22 +103,8 @@ class GameWorld {
 
         const modelViewMatrix = mat4.create();
         
-        // Now move the drawing position a bit to where we want to start drawing the square
-        mat4.translate(modelViewMatrix,   // destination matrix
-            modelViewMatrix,                // matrix to translate
-            [-0.0, 0.0, -10.0]);             // actual translation (x, y, z)
-        // Rotate the thing !
-        mat4.rotate(modelViewMatrix,      // Destination matrix
-            modelViewMatrix,                // matrix to rotate
-            this.squareRotation,             // amount to rotate in radians
-            [0, 0, 1]);                     // axisof rotation
-        mat4.rotate(modelViewMatrix,  // destination matrix
-            modelViewMatrix,  // matrix to rotate
-            this.squareRotation * 0.7,// amount to rotate in radians
-            [0, 1, 0]);       // axis to rotate around (X)
-
         this.gameEntities.forEach(entity => {
-            entity.draw(gl);
+            entity.draw(gl, modelViewMatrix);
         });
 
         // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute

@@ -3,7 +3,7 @@ class Enemy extends Entity {
 	constructor(x, y){
         super(x, y)
     	this.hp = 3;
-    	this.dir = [1, 0];
+    	this.dir = vec2.fromValues(1, 0);
     }
 
     /**

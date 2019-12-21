@@ -8,8 +8,7 @@ class Entity {
      * @param {int} y position Y
      */
     constructor(x, y) {
-        this.pos = vec2.create();
-        vec2.set(this.pos, x, y);
+        this.pos = vec2.fromValues(x, y);
     }
 
     getPos(){
@@ -28,7 +27,7 @@ class Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    draw(width, height) {
+    draw(gl, modelViewMatrix) {
         // Draw your stuff
         /*
         - get position
