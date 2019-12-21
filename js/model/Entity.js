@@ -1,3 +1,5 @@
+//import { vec2 } from "gl-matrix";
+
 class Entity {
 
     /**
@@ -5,9 +7,13 @@ class Entity {
      * @param {int} x position X
      * @param {int} y position Y
      */
-    constructor(x, y, type) {
-        this.posX = x;
-        this.posY = y;
+    constructor(x, y) {
+        this.pos = vec2.create();
+        vec2.set(this.pos, x, y);
+    }
+
+    getPos(){
+        return this.pos;
     }
 
     /**

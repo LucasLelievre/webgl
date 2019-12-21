@@ -70,7 +70,7 @@ function main() {
     // Draw the scene
     //drawScene(glContext, programInfo, buffers, deltaTime);
     // Draw the game's elements
-    gameWorld.render(glContext, buffers, programInfo);
+    gameWorld.render(glContext, buffers, programInfo, deltaTime);
 
     // call a new frame
     requestAnimationFrame(update);

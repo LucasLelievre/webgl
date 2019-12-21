@@ -10,22 +10,24 @@ class GameWorld {
         //this.setWorldSize();
 
         console.log("The game world has been initialized.");
+
+        console.log(this.getGameEntityType(0,0));
+        
     }
 
     /**
      * Create a game world
      */
     constructor() {
-        //TODO create a list for the entities
         //this.width = 0;
         //this.height = 0;
+        //TODO tree for faster physics
         this.gameEntities = [];
+        this.squareRotation = 0.0;
     }
 
     /**
      * Add an entity in the game
-     * @param {int} x position X
-     * @param {int} y position y
      * @param {int} type type of the entity
      */
     addGameEntity(gameEntity) {
@@ -40,7 +42,15 @@ class GameWorld {
      * @returns the entity's type
      */
     getGameEntityType(x, y) {
-        //return the entity at the pos
+        var name;
+        
+        this.gameEntities.forEach(entity => {
+            if (vec2.exactEquals(entity.getPos(), vec2.fromValues(x, y))) {
+                name = entity.constructor.name;
+            }
+        });
+        return name;
+        //TODO do something better than that
     }
 
     /**
@@ -66,7 +76,7 @@ class GameWorld {
     /**
      * Draw all the game's entities
      */
-    render(gl, buffers, programInfo) {
+    render(gl, buffers, programInfo, deltaTime) {
         gl.canvas.width = window.innerWidth;
         gl.canvas.height = window.innerHeight;
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -93,10 +103,22 @@ class GameWorld {
 
         const modelViewMatrix = mat4.create();
         
-        // TODO call all entities' draw function
+        // Now move the drawing position a bit to where we want to start drawing the square
+        mat4.translate(modelViewMatrix,   // destination matrix
+            modelViewMatrix,                // matrix to translate
+            [-0.0, 0.0, -10.0]);             // actual translation (x, y, z)
+        // Rotate the thing !
+        mat4.rotate(modelViewMatrix,      // Destination matrix
+            modelViewMatrix,                // matrix to rotate
+            this.squareRotation,             // amount to rotate in radians
+            [0, 0, 1]);                     // axisof rotation
+        mat4.rotate(modelViewMatrix,  // destination matrix
+            modelViewMatrix,  // matrix to rotate
+            this.squareRotation * 0.7,// amount to rotate in radians
+            [0, 1, 0]);       // axis to rotate around (X)
+
         this.gameEntities.forEach(entity => {
             entity.draw(gl);
-            
         });
 
         // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute
@@ -165,5 +187,6 @@ class GameWorld {
             gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
         }
         
+        this.squareRotation += deltaTime;
     }
 }
