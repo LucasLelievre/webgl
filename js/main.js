@@ -67,6 +67,8 @@ function main() {
     const deltaTime = newTime - lastTime
     lastTime = newTime;
 
+    gameWorld.update(deltaTime);
+
     // Draw the scene
     //drawScene(glContext, programInfo, buffers, deltaTime);
     // Draw the game's elements

@@ -3,16 +3,16 @@ class GameWorld {
     init() {
         // Here are the entities that will be seen in the game
 
-        //this.addGameEntity(new Wall(0, 0)); // a wall at (0,0)
+        this.addGameEntity(new Wall(1, 0)); // a wall at (0,0)
+        this.addGameEntity(new Wall(2, 0)); // a wall at (0,0)
+        this.addGameEntity(new Wall(3, 0)); // a wall at (0,0)
+        this.addGameEntity(new Wall(4, 0)); // a wall at (0,0)
         this.addGameEntity(new Player(0, 0)); // a player at (0,0)
 
 
         //this.setWorldSize();
 
         console.log("The game world has been initialized.");
-
-        console.log(this.getGameEntityType(0,0));
-        
     }
 
     /**
@@ -23,7 +23,6 @@ class GameWorld {
         //this.height = 0;
         //TODO tree for faster physics
         this.gameEntities = [];
-        this.squareRotation = 0.0;
     }
 
     /**
@@ -60,7 +59,13 @@ class GameWorld {
      */
     removeGameEntity(x, y) {
         // TODO reduce the size if needed
-        //TODO
+        var i = 0;
+        this.gameEntities.forEach(entity => {
+            if (vec2.exactEquals(entity.getPos(), vec2.fromValues(x, y))) {
+                this.gameEntities.splice(i, 1);
+            }
+            i++;
+        });
         //this.gameEntities.splice(2, 1);
     }
 
@@ -74,9 +79,22 @@ class GameWorld {
     }
 
     /**
+     * Updates all the game's entities
+     * @param {*} deltaTime 
+     */
+    update(deltaTime) {
+        this.gameEntities.forEach(entity => {
+            entity.update(deltaTime);
+        });
+    }
+
+    /**
      * Draw all the game's entities
      */
     render(gl, buffers, programInfo, deltaTime) {
+        
+            //Setting the size to the size of the window
+            //TODO maybe something better (change only if size is changed)
         gl.canvas.width = window.innerWidth;
         gl.canvas.height = window.innerHeight;
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -89,8 +107,8 @@ class GameWorld {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         const fieldOfView = 45 * Math.PI / 180; // in radians
-        //const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
-        const aspect = window.innerWidth / window.innerHeight;
+        const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+        //const aspect = window.innerWidth / window.innerHeight;
         const zNear = 0.1;
         const zFar = 100.0;
         const projectionMatrix = mat4.create();
@@ -102,7 +120,7 @@ class GameWorld {
             zFar);
 
         const modelViewMatrix = mat4.create();
-        
+
         this.gameEntities.forEach(entity => {
             entity.draw(gl, modelViewMatrix);
         });
@@ -172,7 +190,5 @@ class GameWorld {
             const offset = 0;
             gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
         }
-        
-        this.squareRotation += deltaTime;
     }
 }

@@ -4,6 +4,7 @@ class Player extends Entity {
         super(x, y)
         this.hp = 3;
         this.dir = vec2.fromValues(1, 0);
+        this.squareRotation = 0.0;
     }
 
     /**
@@ -12,6 +13,7 @@ class Player extends Entity {
      */
     update(deltaTime) {
         // Update the entity
+        this.squareRotation += deltaTime;
     }
 
     /**
@@ -21,21 +23,18 @@ class Player extends Entity {
     draw(gl, modelViewMatrix) {
         // alright, lets draw some shit
 
-        // Set the drawing position to the "identity" point, which is the center of the scene
-        //  const modelViewMatrix = mat4.create();
-
         // Now move the drawing position a bit to where we want to start drawing the square
         mat4.translate(modelViewMatrix,   // destination matrix
             modelViewMatrix,                // matrix to translate
-            [-0.0, 0.0, -6.0]);             // actual translation (x, y, z)
+            [this.getPos()[0], this.getPos()[1], -6.0]);             // actual translation (x, y, z)
         // Rotate the thing !
         mat4.rotate(modelViewMatrix,      // Destination matrix
             modelViewMatrix,                // matrix to rotate
-            squareRotation,                 // amount to rotate in radians
+            this.squareRotation,                 // amount to rotate in radians
             [0, 0, 1]);                     // axisof rotation
         mat4.rotate(modelViewMatrix,  // destination matrix
             modelViewMatrix,  // matrix to rotate
-            squareRotation * .7,// amount to rotate in radians
+            this.squareRotation * .7,// amount to rotate in radians
             [0, 1, 0]);       // axis to rotate around (X)
 
         
