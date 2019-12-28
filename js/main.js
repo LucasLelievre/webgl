@@ -57,30 +57,45 @@ function main() {
   // Calling the routine that builds all the objects
   const buffers = initBuffers(glContext);
   // Create a game world
-  gameWorld = new GameWorld();
+  gameWorld = new GameWorld(glContext, programInfo);
   // Create the game's elements
   gameWorld.init();
 
-  var lastTime = 0.0;
-  function update(newTime) {
-    newTime *= 0.001; //convert in seconds
-    const deltaTime = newTime - lastTime
-    lastTime = newTime;
-
-    gameWorld.update(deltaTime);
-
-    // Draw the scene
-    //drawScene(glContext, programInfo, buffers, deltaTime);
-    // Draw the game's elements
-    gameWorld.render(glContext, buffers, programInfo, deltaTime);
-
-    // call a new frame
-    requestAnimationFrame(update);
-  }
+  var oldTime = 0.0;
 
   // Call a new frame
   requestAnimationFrame(update);
+
+  function update(newTime) {
+    //newTime *= 0.001; //convert in seconds
+    const deltaTime = newTime - oldTime;
+    oldTime = newTime;
+
+    // Update the game
+    gameWorld.update(deltaTime * 0.001);
+
+    // Draw the scene
+    //drawScene(glContext, programInfo, buffers, deltaTime);
+    render();
+    
+
+    // call a new update and frame
+    requestAnimationFrame(update);
+  }
+
+  function render(){
+    // Draw the game's elements
+    gameWorld.render(glContext, buffers, programInfo);
+
+    
+  }
 }
 
+// function click(){
+//   console.log("fpeorjv");
+  
+// }
+
+// window.onclick = click;
 // GO
 window.onload = main;

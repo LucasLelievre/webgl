@@ -27,20 +27,9 @@ class Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    draw(gl, modelViewMatrix) {
+    draw(modelViewMatrix) {
         // Draw your stuff
-        /*
-        - get position
-        - glLoadIdentity // reset model-view matrix
-        - get aspectRatio (width / height)
-        - translate to position
-            glTranslate(aspectRatio * (positionX - (0.5 * width)) / (0.5 * width),
-                                        (positionY - (0.5 * height)) / (0.5 * height))
-        - Draw
-            glBegin(GL_TRIANGLE_FAN)
-            set color
-            glVertex
-            glEnd
-        */
+        
+        
     }
 }
