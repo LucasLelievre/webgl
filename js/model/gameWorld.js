@@ -1,14 +1,11 @@
 class GameWorld {
 
-    init() {
+    init(gl) {
         // Here are the entities that will be seen in the game
 
         // this.addGameEntity(new Wall(1, 0)); // a wall at (0,0)
-        // this.addGameEntity(new Wall(2, 0)); // a wall at (0,0)
-        // this.addGameEntity(new Wall(3, 0)); // a wall at (0,0)
-        // this.addGameEntity(new Wall(4, 0)); // a wall at (0,0)
-        this.addGameEntity(new Player(0, -1, 0.01));
-        this.addGameEntity(new Player(1, 0, 0.005)); // a player at (0,0)
+        this.addGameEntity(new Player(0, -1, -6, 0.01, gl));
+        this.addGameEntity(new Player(1, 0, -7, 0.05, gl)); // a player at (0,0)
 
 
         //this.setWorldSize();
@@ -22,13 +19,13 @@ class GameWorld {
     constructor(gl, programInfo) {
         //this.width = 0;
         //this.height = 0;
+
         //TODO tree for faster physics
         this.gameEntities = [];
 
-        
-        
-
         this.renderer = new Renderer(gl, programInfo);
+
+        this.init(gl);
     }
 
     /**
@@ -120,17 +117,17 @@ class GameWorld {
 
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        
+
 
         const modelViewMatrix = mat4.create();
 
         this.gameEntities.forEach(entity => {
             entity.draw(gl, modelViewMatrix);
-            this.renderer.render(buffers, modelViewMatrix);
+            this.renderer.render(entity.getMesh(), modelViewMatrix);
         });
 
 
 
-        
+
     }
 }

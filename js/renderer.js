@@ -8,13 +8,13 @@ class Renderer {
 
     resize() {
         mat4.perspective(this.projectionMatrix,
-            45 * Math.PI / 180,                             //angle in radians
-            this.gl.canvas.clientWidth / this.gl.canvas.clientHeight, //aspect ratio
-            0.1,                                            //z near
-            100.0);                                         //z far
+            45 * Math.PI / 180,                                         //angle in radians
+            this.gl.canvas.clientWidth / this.gl.canvas.clientHeight,   //aspect ratio
+            0.1,                                                        //z near
+            100.0);                                                     //z far
     }
 
-    render(buffers, modelViewMatrix) {
+    render(mesh, modelViewMatrix) {
 
         // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute
         {
@@ -24,7 +24,7 @@ class Renderer {
             const stride = 0;         // how many bytes to get from one set of values to the next
             // 0 = use type and numComponents above
             const offset = 0;         // how many bytes inside the buffer to start from
-            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position); //TODO mesh's positions
+            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, mesh.getPositions());
             this.gl.vertexAttribPointer(
                 this.programInfo.attribLocations.vertexPosition,
                 numComponents,
@@ -45,7 +45,7 @@ class Renderer {
             const normalize = false;
             const stride = 0;
             const offset = 0;
-            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.color);//TODO mesh's colours
+            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, mesh.getColours());
             this.gl.vertexAttribPointer(
                 this.programInfo.attribLocations.vertexColor,
                 numComponents,
@@ -60,7 +60,7 @@ class Renderer {
         }
 
         // Tell WebGL which indices to use to index the vertices
-        this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, buffers.indices);//TODO mesh's indices
+        this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, mesh.getIndices());
 
         // Tell WebGL to use our program when drawing
         this.gl.useProgram(this.programInfo.program);

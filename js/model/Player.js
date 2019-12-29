@@ -1,9 +1,9 @@
 class Player extends Entity {
 
-    constructor(x, y, rotat) {
-        super(x, y)
+    constructor(x, y, z, rotat, gl) {
+        super(x, y, z, Mesh.getPlayerMesh(gl)); //TODO how to get rid of the gl here
         this.hp = 3;
-        this.dir = vec2.fromValues(1, 0);
+        this.dir = vec3.fromValues(1, 0, 0);
         this.squareRotation = 0.0;
         this.rotation = rotat;
     }
@@ -28,9 +28,9 @@ class Player extends Entity {
         mat4.identity(modelViewMatrix);
 
         // Translate
-        mat4.translate( modelViewMatrix,                                // destination matrix
-                        modelViewMatrix,                                // matrix to translate
-                        [this.getPos()[0], this.getPos()[1], -6.0]);    // actual translation (x, y, z)
+        mat4.translate(modelViewMatrix,                                // destination matrix
+            modelViewMatrix,                                // matrix to translate
+            [this.getPos()[0], this.getPos()[1], this.getPos()[2]]);    // actual translation (x, y, z)
         // Rotation
         mat4.rotate(modelViewMatrix,      // Destination matrix
             modelViewMatrix,                // matrix to rotate

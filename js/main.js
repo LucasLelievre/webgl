@@ -58,8 +58,6 @@ function main() {
   const buffers = initBuffers(glContext);
   // Create a game world
   gameWorld = new GameWorld(glContext, programInfo);
-  // Create the game's elements
-  gameWorld.init();
 
   var oldTime = 0.0;
 
