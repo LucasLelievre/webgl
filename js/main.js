@@ -55,7 +55,7 @@ function main() {
   };
 
   // Calling the routine that builds all the objects
-  const buffers = initBuffers(glContext);
+  //const buffers = initBuffers(glContext);
   // Create a game world
   gameWorld = new GameWorld(glContext, programInfo);
 
@@ -83,7 +83,7 @@ function main() {
 
   function render(){
     // Draw the game's elements
-    gameWorld.render(glContext, buffers, programInfo);
+    gameWorld.render(glContext, programInfo);
 
     
   }

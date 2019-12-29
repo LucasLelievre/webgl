@@ -104,7 +104,7 @@ class GameWorld {
     /**
      * Draw all the game's entities
      */
-    render(gl, buffers) {
+    render(gl) {
 
         //Setting the size to the size of the window
         this.resizeViewport(gl);
