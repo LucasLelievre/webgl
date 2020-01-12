@@ -59,6 +59,11 @@ function main() {
   // Create a game world
   gameWorld = new GameWorld(glContext, programInfo);
 
+  canvas.addEventListener("mousedown", gameWorld.mouse.mouseDown, false);
+  canvas.addEventListener("mouseup", gameWorld.mouse.mouseUp, false);
+  canvas.addEventListener("mouseout", gameWorld.mouse.mouseUp, false);
+  canvas.addEventListener("mousemove", gameWorld.mouse.mouseMove, false);
+
   var oldTime = 0.0;
 
   // Call a new frame
@@ -75,23 +80,23 @@ function main() {
     // Draw the scene
     //drawScene(glContext, programInfo, buffers, deltaTime);
     render();
-    
+
 
     // call a new update and frame
     requestAnimationFrame(update);
   }
 
-  function render(){
+  function render() {
     // Draw the game's elements
     gameWorld.render(glContext, programInfo);
 
-    
+
   }
 }
 
 // function click(){
 //   console.log("fpeorjv");
-  
+
 // }
 
 // window.onclick = click;
