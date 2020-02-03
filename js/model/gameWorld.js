@@ -98,7 +98,6 @@ class GameWorld {
      * @param {*} deltaTime 
      */
     update(deltaTime) {
-        //this.mouse.log();
         this.gameEntities.forEach(entity => {
             entity.update(deltaTime);
         });
