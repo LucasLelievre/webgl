@@ -22,4 +22,11 @@ class Mouse {
         vec2.subtract(this.dir, this.pos, this.oldPos);
         
     }
+
+    logger() {
+        console.log(this.pos[0] + " " + this.pos[1] + "\n" +
+                    this.oldPos[0] + " " + this.oldPos[1] + "\n" +
+                    this.dir[0] + " " + this.dir[1] + "\n" +
+                    this.butts[0] + " " + this.butts[1] + " " + this.butts[2]);
+    }
 }

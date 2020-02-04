@@ -101,6 +101,7 @@ class GameWorld {
         this.gameEntities.forEach(entity => {
             entity.update(deltaTime);
         });
+        //this.mouse.logger();
     }
 
     /**
