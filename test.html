@@ -13,10 +13,10 @@
 
         let mouse = new Mouse();
 
-        canvas.addEventListener("mousedown", mouse.mouseDown, false);
-        canvas.addEventListener("mouseup", mouse.mouseUp, false);
-        canvas.addEventListener("mouseout", mouse.mouseUp, false);
-        canvas.addEventListener("mousemove", mouse.mouseMove, false);
+        canvas.addEventListener("mousedown", function(e) {mouse.mouseDown(e) }, false);
+        canvas.addEventListener("mouseup", function(e) {mouse.mouseUp(e) }, false);
+        canvas.addEventListener("mouseout", function(e) {mouse.mouseUp(e) }, false);
+        canvas.addEventListener("mousemove", function(e) {mouse.mouseMove(e) }, false);
 
         mouse.logger();
         
