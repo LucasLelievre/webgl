@@ -4,8 +4,9 @@ class GameWorld {
         // Here are the entities that will be seen in the game
 
         // this.addGameEntity(new Wall(1, 0)); // a wall at (0,0)
-        this.addGameEntity(new Player(0, -1, -6, 0.01, gl));
-        this.addGameEntity(new Player(1, 0, -7, 0.05, gl)); // a player at (0,0)
+        //this.addGameEntity(new Player(0, -1, -6, 0.01, gl));
+        //this.addGameEntity(new Player(1, 0, -7, 0.05, gl)); // a player at (0,0)
+        this.addGameEntity(new Player(0, 0, -7, 0.05, gl, this.mouse));
 
 
         //this.setWorldSize();

@@ -19,7 +19,15 @@ class Mouse {
         vec2.copy(this.oldPos, this.pos);
         vec2.set(this.pos, e.pageX, e.pageY);
         vec2.subtract(this.dir, this.pos, this.oldPos);
-        vec2.normalize(this.dir, this.dir);
+        //vec2.normalize(this.dir, this.dir);
+    }
+
+    getButts(){
+        return this.butts;
+    }
+
+    getDir(){
+        return this.dir;
     }
 
     logger() {
