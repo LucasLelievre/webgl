@@ -26,7 +26,7 @@ class GameWorld {
 
         this.renderer = new Renderer(gl, programInfo);
 
-        this.mouse = new Mouse();
+        this.mouse = new Mouse(gl.canvas.width, gl.canvas.height);
 
         this.init(gl);
     }

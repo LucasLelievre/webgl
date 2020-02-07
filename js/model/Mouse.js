@@ -1,6 +1,7 @@
 class Mouse {
 
-    constructor() {
+    constructor(width, height) {
+        this.screen = [width, height];
         this.pos = vec2.fromValues(0.0, 0.0);
         this.dir = vec2.fromValues(0.0, 0.0);
         this.oldPos = vec2.fromValues(0.0, 0.0);
@@ -28,6 +29,10 @@ class Mouse {
 
     getDir(){
         return this.dir;
+    }
+
+    getScreen(){
+        return this.screen;
     }
 
     logger() {

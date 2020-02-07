@@ -4,8 +4,10 @@ class Player extends Entity {
         super(x, y, z, Mesh.getPlayerMesh(gl)); //TODO how to get rid of the gl here
         this.hp = 3;
         this.dir = vec3.fromValues(1, 0, 0);
-        this.squareRotationY = 0.0;
-        this.squareRotationX = 0.0;
+
+        this.theta = 0.0;       this.phi = 0.0;
+        this.dx = 0.0;          this.dy = 0.0;
+        
         this.rotation = rotat;
         this.mouse = mouse;
     }
@@ -16,10 +18,14 @@ class Player extends Entity {
      */
     update(deltaTime) {
         // Update the entity
+        this.dx *= 0.95;
+        this.dy *= 0.95;
         if (this.mouse.getButts()[0]) {
-            this.squareRotationY += (this.rotation * this.mouse.getDir()[0]);
-            this.squareRotationX += (this.rotation * this.mouse.getDir()[1]);
+            this.dx += (this.mouse.getDir()[0] * 2 * Math.PI / this.mouse.getScreen()[0]);
+            this.dy += (this.mouse.getDir()[1] * 2 * Math.PI / this.mouse.getScreen()[1]);
         }
+        this.theta += this.dx;
+        this.phi += this.dy;
     }
 
     /**
@@ -39,11 +45,11 @@ class Player extends Entity {
         // Rotation
         mat4.rotate(modelViewMatrix,      // Destination matrix
             modelViewMatrix,                // matrix to rotate
-            this.squareRotationY,                 // amount to rotate in radians
+            this.theta,                 // amount to rotate in radians
             [0, 1, 0]);                     // axisof rotation
         mat4.rotate(modelViewMatrix,  // destination matrix
             modelViewMatrix,  // matrix to rotate
-            this.squareRotationX,// amount to rotate in radians
+            this.phi,// amount to rotate in radians
             [1, 0, 0]);       // axis to rotate around (X)
     }
 
