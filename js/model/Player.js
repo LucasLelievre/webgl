@@ -5,10 +5,10 @@ class Player extends Entity {
         this.hp = 3;
         this.dir = vec3.fromValues(1, 0, 0);
 
-        this.theta = 0.0;       this.phi = 0.0;
-        this.dx = 0.0;          this.dy = 0.0;
-        
         this.rotation = rotat;
+        this.theta = 0.0;
+        this.phi = 0.0;
+        
         this.mouse = mouse;
     }
 
@@ -18,14 +18,9 @@ class Player extends Entity {
      */
     update(deltaTime) {
         // Update the entity
-        this.dx *= 0.95;
-        this.dy *= 0.95;
-        if (this.mouse.getButts()[0]) {
-            this.dx += (this.mouse.getDir()[0] * 2 * Math.PI / this.mouse.getScreen()[0]);
-            this.dy += (this.mouse.getDir()[1] * 2 * Math.PI / this.mouse.getScreen()[1]);
-        }
-        this.theta += this.dx;
-        this.phi += this.dy;
+
+        this.theta += this.rotation;
+        this.phi += this.rotation;
     }
 
     /**
