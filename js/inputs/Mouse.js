@@ -9,18 +9,21 @@ class Mouse {
     }
 
     mouseDown(e) {
+        e.preventDefault();
         this.butts[e.button] = true;
     }
 
     mouseUp(e) {
+        e.preventDefault();
         this.butts[e.button] = false;
     }
 
     mouseMove(e) {
-        vec2.copy(this.oldPos, this.pos);
+        e.preventDefault();
         vec2.set(this.pos, e.pageX, e.pageY);
         vec2.subtract(this.dir, this.pos, this.oldPos);
-        //vec2.normalize(this.dir, this.dir);
+        vec2.set(this.oldPos, e.pageX, e.pageY);
+        vec2.normalize(this.dir, this.dir);
     }
 
     getButts(){
