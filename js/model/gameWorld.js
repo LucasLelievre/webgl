@@ -28,6 +28,8 @@ class GameWorld {
 
         this.mouse = new Mouse(gl.canvas.width, gl.canvas.height);
 
+        this.keyboard = new Keyboard();
+
         this.init(gl);
     }
 
