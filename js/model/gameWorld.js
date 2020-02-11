@@ -102,7 +102,7 @@ class GameWorld {
      */
     update(deltaTime) {
         this.gameEntities.forEach(entity => {
-            entity.update(deltaTime);
+            entity.update(deltaTime, this.keyboard.keys);
         });
         //this.mouse.logger();
     }

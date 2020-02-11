@@ -5,7 +5,7 @@ class Keyboard {
     }
 
     keyDown(keyCode){
-        if (this.keys.findIndex(key => key == keyCode) == -1)
+        if (!this.keys.includes(keyCode))
             this.keys.push(keyCode);
     }
 
@@ -14,8 +14,7 @@ class Keyboard {
     }
 
     isKeyPressed(keyCode) {
-        console.log(this.keys.findIndex(key => key == keyCode));
-        if (this.keys.findIndex(key => key == keyCode) != -1) return true;
+        if (this.keys.includes(keyCode)) return true;
         return false;
     }
 }
