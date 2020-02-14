@@ -1,6 +1,8 @@
 class Mesh {
     constructor(gl, positions, faceColours, indices) {
 
+        this.vertexCount = indices.length;
+
         this.positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
@@ -29,6 +31,17 @@ class Mesh {
 
     getIndices() {
         return this.indexBuffer;
+    }
+    
+    static getWallMesh(gl) {
+        const positions = [
+            -1.0, -1.0,  0.0,
+            1.0, -1.0,  0.0,
+            1.0,  1.0,  0.0,
+            -1.0,  1.0,  0.0];
+        const faceColours = [ [0.5,  0.5,  0.5,  1.0] ];
+        const indices = [0, 1, 2,        0, 2, 3];
+        return new Mesh(gl, positions, faceColours, indices);
     }
 
     static getPlayerMesh(gl){
