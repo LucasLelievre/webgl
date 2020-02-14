@@ -5,6 +5,8 @@ class Keyboard {
     }
 
     keyDown(keyCode){
+        //console.log(keyCode);
+        
         if (!this.keys.includes(keyCode))
             this.keys.push(keyCode);
     }
