@@ -76,7 +76,7 @@ class Renderer {
             modelViewMatrix);
 
         {
-            const vertexCount = 36;//TODO mesh's vertex count
+            const vertexCount = mesh.vertexCount;//TODO mesh's vertex count
             const type = this.gl.UNSIGNED_SHORT;
             const offset = 0;
             this.gl.drawElements(this.gl.TRIANGLES, vertexCount, type, offset);
