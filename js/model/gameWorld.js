@@ -7,6 +7,7 @@ class GameWorld {
         //this.addGameEntity(new Player(0, -1, -6, 0.01, gl));
         //this.addGameEntity(new Player(1, 0, -7, 0.05, gl)); // a player at (0,0)
         this.addGameEntity(new Player(0, 0, -7, 0.05, gl, this.mouse));
+        this.addGameEntity(new Wall(0, -1, -7, gl, [90, 0, 0], [5, 1, 5]));
 
 
         //this.setWorldSize();
