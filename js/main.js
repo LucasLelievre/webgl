@@ -64,6 +64,9 @@ function main() {
   canvas.addEventListener("mouseout", function (e) { gameWorld.mouse.mouseUp(e) }, false);
   canvas.addEventListener("mousemove", function (e) { gameWorld.mouse.mouseMove(e) }, false);
 
+  document.addEventListener("keydown", function(e) { gameWorld.keyboard.keyDown(e.keyCode)}, false);
+  document.addEventListener("keyup", function(e) { gameWorld.keyboard.keyUp(e.keyCode)}, false);
+
   var oldTime = 0.0;
 
   // Call a new frame

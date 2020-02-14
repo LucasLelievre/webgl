@@ -28,6 +28,8 @@ class GameWorld {
 
         this.mouse = new Mouse(gl.canvas.width, gl.canvas.height);
 
+        this.keyboard = new Keyboard();
+
         this.init(gl);
     }
 
@@ -100,7 +102,7 @@ class GameWorld {
      */
     update(deltaTime) {
         this.gameEntities.forEach(entity => {
-            entity.update(deltaTime);
+            entity.update(deltaTime, this.keyboard.keys);
         });
         //this.mouse.logger();
     }
