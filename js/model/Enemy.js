@@ -2,7 +2,8 @@ class Enemy extends Entity {
 	
 	constructor(x, y){
         super(x, y)
-    	this.hp = 3;
+        this.hp = 3;
+        //TODO vec3
     	this.dir = vec2.fromValues(1, 0);
     }
 
