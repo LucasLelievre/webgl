@@ -1,0 +1,10 @@
+
+37  Left
+39  Right
+38  Up
+40  Down
+
+87  w
+83  s
+65  a
+68  d

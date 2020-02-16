@@ -59,10 +59,13 @@ function main() {
   // Create a game world
   gameWorld = new GameWorld(glContext, programInfo);
 
-  canvas.addEventListener("mousedown", gameWorld.mouse.mouseDown, false);
-  canvas.addEventListener("mouseup", gameWorld.mouse.mouseUp, false);
-  canvas.addEventListener("mouseout", gameWorld.mouse.mouseUp, false);
-  canvas.addEventListener("mousemove", gameWorld.mouse.mouseMove, false);
+  canvas.addEventListener("mousedown", function (e) { gameWorld.mouse.mouseDown(e) }, false);
+  canvas.addEventListener("mouseup", function (e) { gameWorld.mouse.mouseUp(e) }, false);
+  canvas.addEventListener("mouseout", function (e) { gameWorld.mouse.mouseUp(e) }, false);
+  canvas.addEventListener("mousemove", function (e) { gameWorld.mouse.mouseMove(e) }, false);
+
+  document.addEventListener("keydown", function(e) { gameWorld.keyboard.keyDown(e.keyCode)}, false);
+  document.addEventListener("keyup", function(e) { gameWorld.keyboard.keyUp(e.keyCode)}, false);
 
   var oldTime = 0.0;
 
