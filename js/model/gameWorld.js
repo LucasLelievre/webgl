@@ -48,11 +48,11 @@ class GameWorld {
      * @param {int} y position y of the entity
      * @returns the entity's type
      */
-    getGameEntityType(x, y) {
+    getGameEntityType(x, y, z) {
         var name;
 
         this.gameEntities.forEach(entity => {
-            if (vec2.exactEquals(entity.getPos(), vec2.fromValues(x, y))) {
+            if (vec3.exactEquals(entity.getPos(), vec3.fromValues(x, y, z))) {
                 name = entity.constructor.name;
             }
         });
@@ -65,11 +65,11 @@ class GameWorld {
      * @param {int} x position x
      * @param {int} y position y
      */
-    removeGameEntity(x, y) {
+    removeGameEntity(x, y, z) {
         // TODO reduce the size if needed
         var i = 0;
         this.gameEntities.forEach(entity => {
-            if (vec2.exactEquals(entity.getPos(), vec2.fromValues(x, y))) {
+            if (vec3.exactEquals(entity.getPos(), vec3.fromValues(x, y, z))) {
                 this.gameEntities.splice(i, 1);
             }
             i++;
