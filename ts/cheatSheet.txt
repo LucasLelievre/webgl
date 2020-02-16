@@ -1,0 +1,17 @@
+== do not use wsl, use powershell insted ==
+
+== INSTALL TYPESCRIPT ==
+
+1 - install npm on the web
+
+2 - install typescript with npm in powershell
+
+npm install -g typescript
+
+3 - check typescript version
+
+tsc --version
+
+== COMPILE CODE ==
+
+tsc file.ts
