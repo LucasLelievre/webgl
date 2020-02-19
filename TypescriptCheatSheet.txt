@@ -12,6 +12,14 @@ npm install -g typescript
 
 tsc --version
 
+4 - Intialise typescript project
+
+tsc --init
+
 == COMPILE CODE ==
 
-tsc file.ts
+1 - just call tsc in the project directory
+
+tsc
+
+2 - cofiguration can be found in the tsconfig.json file
