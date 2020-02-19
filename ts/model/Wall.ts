@@ -23,7 +23,7 @@ class Wall extends Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix) {
+    public draw(modelViewMatrix: mat4) {
         // Draw your stuff
         //TODO reset translate rotate scalate
     }

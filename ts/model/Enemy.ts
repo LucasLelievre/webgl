@@ -2,9 +2,9 @@ class Enemy extends Entity {
 
     private hp:number;
 
-    constructor(x: number, y: number) {
+    constructor(x: number, y: number, z: number) {
         //TODO enemy mesh
-        super(x, y, 0, Mesh.getPlayerMesh());
+        super(x, y, z, Mesh.getPlayerMesh());
 
         this.hp = 3;
     }
@@ -21,7 +21,7 @@ class Enemy extends Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix) {
+    public draw(modelViewMatrix: mat4) {
         // Draw your stuff
         //TODO reset translate rotate scalate
     }

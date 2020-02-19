@@ -1,4 +1,4 @@
-class Entity {
+abstract class Entity {
 
     private pos: vec3;
     private dir: vec3;
@@ -10,10 +10,9 @@ class Entity {
      * @param {int} y position Y
      * @param {int} Z position Z
      */
-    constructor(public x: number, public y: number, public z: number, public mesh: Mesh) {
-        this.pos = vec3.fromValues(x, y, z);
-        //TODO maybe not this direction
-        this.dir = vec3.fromValues(1, 0);
+    constructor(pos: vec3, dir: vec3, public mesh: Mesh) {
+        this.pos = pos;
+        this.dir = dir;
         this.mesh = mesh;
     }
 
@@ -22,6 +21,13 @@ class Entity {
      */
     public getPos() {
         return this.pos;
+    }
+
+    /**
+     * Returns the entity's direction
+     */
+    public getDir() {
+        return this.dir;
     }
 
     /**
@@ -43,7 +49,7 @@ class Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix) {
+    public draw(modelViewMatrix: mat4) {
         // Draw your stuff
     }
 }

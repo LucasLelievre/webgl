@@ -1,6 +1,5 @@
 class Player extends Entity {
 
-    private dir: vec3;
     private hp:number;
     private rotation:number;
     private rotationAmount:number;
@@ -26,7 +25,7 @@ class Player extends Entity {
      * Draws the entity
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix) {
+    public draw(modelViewMatrix: mat4) {
         // alright, lets draw some shit
 
         // Reset the model-view matrix
