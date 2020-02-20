@@ -1,6 +1,6 @@
 class Enemy extends Entity {
 
-    private hp:number;
+    private hp: number;
 
     constructor(pos: vec3, dir: vec3) {
         //TODO enemy mesh
@@ -13,7 +13,7 @@ class Enemy extends Entity {
      * Updates the element since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number){
+    public update(deltaTime: number) {
         // Update the element
     }
 

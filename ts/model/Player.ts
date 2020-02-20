@@ -1,6 +1,6 @@
 class Player extends Entity {
 
-    private hp:number;
+    private hp: number;
 
     constructor(pos: vec3, dir: vec3) {
         super(pos, dir, Mesh.getPlayerMesh());

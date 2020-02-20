@@ -1,13 +1,13 @@
 class Wall extends Entity {
 
-    private size:vec3;
+    private size: vec3;
 
     /**
      * Creates a Wall
      * @param {int} x position on the X axis
      * @param {int} y position on the Y axis
      */
-	constructor(pos: vec3, dir: vec3, size: vec3){
+    constructor(pos: vec3, dir: vec3, size: vec3) {
         //TODO wall mesh
         super(pos, dir, Mesh.getPlayerMesh());
         this.size = size;
@@ -17,7 +17,7 @@ class Wall extends Entity {
      * Updates the element since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number){
+    public update(deltaTime: number) {
         // Update the element
         // To be honest, not much to do.
     }

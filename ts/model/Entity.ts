@@ -19,21 +19,21 @@ abstract class Entity {
     /**
      * Returns the entity's position
      */
-    public getPos() {
+    public getPos(): vec3 {
         return this.pos;
     }
 
     /**
      * Returns the entity's direction
      */
-    public getDir() {
+    public getDir(): vec3 {
         return this.dir;
     }
 
     /**
      * Returns the entity's mesh
      */
-    public getMesh() {
+    public getMesh(): vec3 {
         return this.mesh;
     }
 
@@ -41,7 +41,7 @@ abstract class Entity {
      * Updates the element since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number, keys: string[]){
+    public update(deltaTime: number, keys: string[]) {
         // Update the element
     }
 
