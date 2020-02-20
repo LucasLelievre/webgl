@@ -41,7 +41,7 @@ abstract class Entity {
      * Updates the element since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number){
+    public update(deltaTime: number, keys: string[]){
         // Update the element
     }
 
