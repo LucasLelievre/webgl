@@ -1,13 +1,16 @@
 class Wall extends Entity {
 
+    private size:vec3;
+
     /**
      * Creates a Wall
      * @param {int} x position on the X axis
      * @param {int} y position on the Y axis
      */
-	constructor(x: number, y: number){
+	constructor(pos: vec3, dir: vec3, size: vec3){
         //TODO wall mesh
-        super(x, y, 0, Mesh.getPlayerMesh());
+        super(pos, dir, Mesh.getPlayerMesh());
+        this.size = size;
     }
 
     /**
@@ -25,6 +28,17 @@ class Wall extends Entity {
      */
     public draw(modelViewMatrix: mat4) {
         // Draw your stuff
-        //TODO reset translate rotate scalate
+
+        // Reset the model-view matrix
+        mat4.identity(modelViewMatrix);
+
+        // Translate    out             in              translation
+        mat4.translate(modelViewMatrix, modelViewMatrix, this.getPos());
+        //Scale         out             in              scale
+        mat4.scale(modelViewMatrix, modelViewMatrix, this.size);
+        // Rotation     out             in              angle (radian)          axis
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, [1, 0, 0]);
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, [0, 1, 0]);
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, [0, 0, 1]);
     }
 }
