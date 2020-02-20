@@ -22,26 +22,26 @@ class GameWorld {
         this.init(gl);
     }
 
-    private init() {
+    private init(): void {
         // Here are the entities that will be part of the game
 
         this.addGameEntity(new Player([0, 0, -7], [0, 0, 1]));
         this.addGameEntity(new Wall([0, -1, -7], [1, 0, 0], [3, 0.1, 2]));
     }
 
-    public addGameEntity(entity: Entity) {
+    public addGameEntity(entity: Entity): void {
         this.gameEntities.push(entity);
     }
 
-    public resizeViewport(){
+    public resizeViewport(): void {
         //TODO
     }
 
-    public update(deltaTime: number) {
+    public update(deltaTime: number): void {
         //TODO
     }
 
-    public render() {
+    public render(): void {
         //TODO
     }
 }
