@@ -2,9 +2,9 @@ class Enemy extends Entity {
 
     private hp:number;
 
-    constructor(x: number, y: number, z: number) {
+    constructor(pos: vec3, dir: vec3) {
         //TODO enemy mesh
-        super(x, y, z, Mesh.getPlayerMesh());
+        super(pos, dir, Mesh.getPlayerMesh());
 
         this.hp = 3;
     }

@@ -1,24 +1,19 @@
 class Player extends Entity {
 
     private hp:number;
-    private rotation:number;
-    private rotationAmount:number;
 
-    constructor(x: number, y: number, z:number, rotat:number, gl) {
-        super(x, y, z, Mesh.getPlayerMesh(gl));
+    constructor(pos: vec3, dir: vec3) {
+        super(pos, dir, Mesh.getPlayerMesh());
         this.hp = 3;
-        this.dir = vec3.fromValues(1, 0, 0);
-        this.rotation = 0.0;
-        this.rotationAmount = rotat;
     }
 
     /**
      * Updates the entity since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number) {
+    public update(deltaTime: number, keys: string[]) {
         // Update the entity
-        this.rotation = this.rotation + this.rotationAmount;
+        //TODO movement based on keys
     }
 
     /**
@@ -32,18 +27,14 @@ class Player extends Entity {
         mat4.identity(modelViewMatrix);
 
         // Translate
-        mat4.translate(modelViewMatrix,                                // destination matrix
-            modelViewMatrix,                                // matrix to translate
-            [this.getPos()[0], this.getPos()[1], this.getPos()[2]]);    // actual translation (x, y, z)
+        //              out             in              translation
+        mat4.translate(modelViewMatrix, modelViewMatrix, this.getPos());
+
         // Rotation
-        mat4.rotate(modelViewMatrix,      // Destination matrix
-            modelViewMatrix,                // matrix to rotate
-            this.rotation,                 // amount to rotate in radians
-            [0, 0, 1]);                     // axisof rotation
-        mat4.rotate(modelViewMatrix,  // destination matrix
-            modelViewMatrix,  // matrix to rotate
-            this.rotation * .7,// amount to rotate in radians
-            [0, 1, 0]);       // axis to rotate around (X)
+        //              out             int             angle (radian)          axis
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, [1, 0, 0]);
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, [0, 1, 0]);
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, [0, 0, 1]);
     }
 
     public strike() {
