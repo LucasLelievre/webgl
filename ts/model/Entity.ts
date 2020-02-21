@@ -10,7 +10,7 @@ abstract class Entity {
      * @param {int} y position Y
      * @param {int} Z position Z
      */
-    constructor(pos: vec3, dir: vec3, public mesh: Mesh) {
+    constructor(pos: vec3, dir: vec3, mesh: Mesh) {
         this.pos = pos;
         this.dir = dir;
         this.mesh = mesh;

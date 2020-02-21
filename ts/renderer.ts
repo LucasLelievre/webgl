@@ -1,11 +1,11 @@
 class Renderer {
 
     private glContext: WebGLRenderingContext;
-    private programInfo: ;
+    private programInfo: object;
 
     private projectionMatrix: mat4;
 
-    constructor(glContext: WebGLRenderingContext, programInfo) {
+    constructor(glContext: WebGLRenderingContext, programInfo: object) {
         this.glContext = glContext;
         this.programInfo = programInfo;
 

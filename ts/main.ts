@@ -9,7 +9,7 @@ class Main {
 
     //TODO read the shaders from files
     // Vertex Shader
-    private const vsSource = `
+    private vsSource = `
         attribute vec4 aVertexPosition;
         attribute vec4 aVertexColor;
         
@@ -23,7 +23,7 @@ class Main {
             vColor = aVertexColor;
         }`;
     // Fragment shader
-    private const fsSource = `
+    private fsSource = `
         varying lowp vec4 vColor;
         
         void main() {
@@ -82,11 +82,11 @@ class Main {
      * @param fsSource fragment shader code
      */
     private initShaderProgram(gl: WebGLRenderingContext, vsSource: string, fsSource: string) {
-        const vertexShader = this.loadShader(gl, gl.VERTEX_SHADER, vsSource);
-        const fragmentShader = this.loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+        const vertexShader = this.loadShader(gl, gl.VERTEX_SHADER, vsSource) as WebGLShader;
+        const fragmentShader = this.loadShader(gl, gl.FRAGMENT_SHADER, fsSource) as WebGLShader;
 
         // Create the shader program
-        const shaderProgram = gl.createProgram();
+        const shaderProgram = gl.createProgram() as WebGLProgram;
         gl.attachShader(shaderProgram, vertexShader);
         gl.attachShader(shaderProgram, fragmentShader);
         gl.linkProgram(shaderProgram);
@@ -101,7 +101,7 @@ class Main {
     }
 
     private loadShader(gl: WebGLRenderingContext, type: number, source: string) {
-        const shader = gl.createShader(type);
+        const shader = gl.createShader(type) as WebGLShader;
       
         // Send the source to the shader object
         gl.shaderSource(shader, source)
@@ -122,13 +122,13 @@ class Main {
 
 
     private initEvents(): void {
-        this.canvas.addEventListener("mousedown", function (e) { this.gameWorld.getMouse().mouseDown(e) }, false);
-        this.canvas.addEventListener("mouseup", function (e) { this.gameWorld.getMouse().mouseUp(e) }, false);
-        this.canvas.addEventListener("mouseout", function (e) { this.gameWorld.getMouse().mouseUp(e) }, false);
-        this.canvas.addEventListener("mousemove", function (e) { this.gameWorld.getMouse().mouseMove(e) }, false);
+        Main.canvas.addEventListener("mousedown", (e) => this.gameWorld.getMouse().mouseDown(e), false);
+        Main.canvas.addEventListener("mouseup", (e) => this.gameWorld.getMouse().mouseUp(e) , false);
+        Main.canvas.addEventListener("mouseout", (e) => this.gameWorld.getMouse().mouseUp(e) , false);
+        Main.canvas.addEventListener("mousemove", (e) => this.gameWorld.getMouse().mouseMove(e) , false);
 
-        document.addEventListener("keydown", function (e) { this.gameWorld.getKeyboard().keyDown(e.keyCode) }, false);
-        document.addEventListener("keyup", function (e) { this.gameWorld.getKeyboard().keyUp(e.keyCode) }, false);
+        document.addEventListener("keydown", (e) => this.gameWorld.getKeyboard().keyDown(e.key), false);
+        document.addEventListener("keyup", (e) => this.gameWorld.getKeyboard().keyUp(e.key), false);
     }
 
     private update(newTime: number): void {
@@ -151,4 +151,4 @@ class Main {
 
 }
 
-new Main();
+window.onload = function() { new Main() }
