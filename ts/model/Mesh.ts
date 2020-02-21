@@ -3,8 +3,49 @@ class Mesh {
     //TODO gl context
     //public static gl: glcontext;
 
-    constructor(positions: number[], faceColours: number[][], indices: number[]) {
+    private positionBuffer: WebGLBuffer;
+    private colourBuffer: WebGLBuffer;
+    private indexBuffer: WebGLBuffer;
+
+    private vertexCount: number;
+
+    constructor(glContext: WebGLRenderingContext, positions: number[], faceColours: number[][], indices: number[]) {
         //TODO buffers and webgl shit
+
+        this.vertexCount = indices.length;
+
+        this.positionBuffer = glContext.createBuffer();
+        glContext.bindBuffer(glContext.ARRAY_BUFFER, this.positionBuffer);
+        glContext.bufferData(glContext.ARRAY_BUFFER, new Float32Array(positions), glContext.STATIC_DRAW);
+
+        var colours: number[];
+        colours = [];
+        faceColours.forEach(faceColour => {
+            colours = colours.concat(faceColour, faceColour, faceColour, faceColour);
+        });
+        this.colourBuffer = glContext.createBuffer();
+        glContext.bindBuffer(glContext.ARRAY_BUFFER, this.colourBuffer);
+        glContext.bufferData(glContext.ARRAY_BUFFER, new Float32Array(colours), glContext.STATIC_DRAW);
+
+        this.indexBuffer = glContext.createBuffer();
+        glContext.bindBuffer(glContext.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+        glContext.bufferData(glContext.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), glContext.STATIC_DRAW);
+    }
+
+    public getVertexCount(): number {
+        return this.getVertexCount;
+    }
+
+    public getPositions(): number[] {
+        return this.positionBuffer;
+    }
+
+    public getColours(): number[][] {
+        return this.colourBuffer;
+    }
+
+    public getIndices(): number[] {
+        return this.indexBuffer;
     }
 
     public static getWallMesh() {
