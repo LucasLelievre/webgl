@@ -33,7 +33,7 @@ abstract class Entity {
     /**
      * Returns the entity's mesh
      */
-    public getMesh(): vec3 {
+    public getMesh(): Mesh {
         return this.mesh;
     }
 

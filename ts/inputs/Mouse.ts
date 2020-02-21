@@ -1,6 +1,6 @@
 class Mouse {
 
-    private pos: vec3;
+    private pos: vec2;
     private buttons: boolean[];
 
     constructor() {

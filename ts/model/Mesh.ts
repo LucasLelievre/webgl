@@ -1,8 +1,5 @@
 class Mesh {
 
-    //TODO gl context
-    //public static gl: glcontext;
-
     private positionBuffer: WebGLBuffer;
     private colourBuffer: WebGLBuffer;
     private indexBuffer: WebGLBuffer;
@@ -33,18 +30,18 @@ class Mesh {
     }
 
     public getVertexCount(): number {
-        return this.getVertexCount;
+        return this.vertexCount;
     }
 
-    public getPositions(): number[] {
+    public getPositions(): WebGLBuffer {
         return this.positionBuffer;
     }
 
-    public getColours(): number[][] {
+    public getColours(): WebGLBuffer {
         return this.colourBuffer;
     }
 
-    public getIndices(): number[] {
+    public getIndices(): WebGLBuffer {
         return this.indexBuffer;
     }
 

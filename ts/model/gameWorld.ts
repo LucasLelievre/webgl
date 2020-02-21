@@ -89,17 +89,10 @@ class GameWorld {
             mat4.identity(modelViewMatrix);
 
             // move world to camera
-            mat4.rotate(modelViewMatrix, modelViewMatrix,
-                this.camera.dir[0] * Math.PI / 180,
-                [1, 0, 0]);
-            mat4.rotate(modelViewMatrix, modelViewMatrix,
-                this.camera.dir[1] * Math.PI / 180,
-                [0, 1, 0]);
-            mat4.rotate(modelViewMatrix, modelViewMatrix,
-                this.camera.dir[2] * Math.PI / 180,
-                [0, 0, 1]);
-            mat4.translate(modelViewMatrix, modelViewMatrix,
-                this.camera.pos);
+            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[0] * Math.PI / 180, [1, 0, 0]);
+            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[1] * Math.PI / 180, [0, 1, 0]);
+            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[2] * Math.PI / 180, [0, 0, 1]);
+            mat4.translate(modelViewMatrix, modelViewMatrix, this.camera.getPos());
 
             entity.draw(modelViewMatrix);
             this.renderer.render(entity.getMesh(), modelViewMatrix);
