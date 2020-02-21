@@ -44,4 +44,12 @@ class GameWorld {
     public render(): void {
         //TODO
     }
+
+    public getMouse() {
+        return this.mouse;
+    }
+
+    public getKeyboard() {
+        return this.keyboard;
+    }
 }
