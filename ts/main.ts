@@ -3,9 +3,9 @@
  */
 class Main {
     // the canvas that will be drawn on
-    private canvas: HTMLCanvasElement;
+    private static canvas = document.getElementById("#glCanvas") as HTMLCanvasElement;
     // GL context
-    private glContext: WebGLRenderingContext;
+    private static glContext = Main.canvas.getContext("webgl") as WebGLRenderingContext;
 
     //TODO read the shaders from files
     // Vertex Shader
@@ -40,12 +40,10 @@ class Main {
     private deltaTime: number;
 
     constructor() {
-        this.canvas = document.getElementById("#glCanvas") as HTMLCanvasElement;
-        this.glContext = this.canvas.getContext("webgl");
 
         this.initShaders();
         
-        this.gameWorld = new GameWorld(this.glContext, this.programInfo);
+        this.gameWorld = new GameWorld(Main.glContext, this.programInfo);
 
         this.initEvents();
 
@@ -54,17 +52,25 @@ class Main {
         requestAnimationFrame(this.update);
     }
 
+    public static getCanvas(): HTMLCanvasElement {
+        return Main.canvas as HTMLCanvasElement;
+    }
+
+    public static getGlContext(): WebGLRenderingContext {
+        return Main.glContext as WebGLRenderingContext;
+    }
+
     private initShaders(): void {
-        this.shaderProgram = this.initShaderProgram(this.glContext, this.vsSource, this.fsSource);
+        this.shaderProgram = this.initShaderProgram(Main.glContext, this.vsSource, this.fsSource) as WebGLProgram;
         this.programInfo = {
             program: this.shaderProgram,
             attribLocations: {
-                vertexPosition: this.glContext.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
-                vertexColor: this.glContext.getAttribLocation(this.shaderProgram, 'aVertexColor'),
+                vertexPosition: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
+                vertexColor: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexColor'),
             },
             uniformLocation: {
-                projectionMatrix: this.glContext.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
-                modelViewMatrix: this.glContext.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
+                projectionMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
+                modelViewMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
             },
         };
     }

@@ -6,8 +6,10 @@ class Mesh {
 
     private vertexCount: number;
 
-    constructor(glContext: WebGLRenderingContext, positions: number[], faceColours: number[][], indices: number[]) {
+    constructor(positions: number[], faceColours: number[][], indices: number[]) {
         //TODO buffers and webgl shit
+
+        var glContext = Main.getGlContext();
 
         this.vertexCount = indices.length;
 
