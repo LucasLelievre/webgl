@@ -8,7 +8,7 @@ class GameWorld {
     private keyboard: Keyboard;
 
 
-    constructor(glContext: WebGLRenderingContext) {
+    constructor(glContext: WebGLRenderingContext, programInfo: object) {
         this.glContext = glContext;
 
         //TODO tree for physics
