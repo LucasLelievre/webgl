@@ -62,6 +62,7 @@ class Main {
 
     private initShaders(): void {
         this.shaderProgram = this.initShaderProgram(Main.glContext, this.vsSource, this.fsSource) as WebGLProgram;
+        
         this.programInfo = {
             program: this.shaderProgram,
             attribLocations: {
