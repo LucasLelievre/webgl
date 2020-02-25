@@ -1,3 +1,5 @@
+import { vec2 } from "../gl-matrix/gl-matrix"
+
 class Mouse {
 
     private pos: vec2;

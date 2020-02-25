@@ -1,3 +1,5 @@
+import { mat4 } from "../gl-matrix/gl-matrix"
+
 class Wall extends Entity {
 
     private size: vec3;
