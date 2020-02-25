@@ -1,4 +1,4 @@
-import { vec2 } from "../gl-matrix/gl-matrix"
+import { vec2 } from "../maths/gl-matrix"
 
 class Mouse {
 

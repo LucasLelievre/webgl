@@ -1,4 +1,4 @@
-import { mat4 } from "../gl-matrix/gl-matrix"
+import { mat4 } from "../maths/gl-matrix"
 
 class GameWorld {
 
