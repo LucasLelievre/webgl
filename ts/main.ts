@@ -41,7 +41,23 @@ class Main {
 
     constructor() {
 
-        this.initShaders();
+        /* Initialize shaders */
+
+        this.shaderProgram = this.initShaderProgram(Main.glContext, this.vsSource, this.fsSource) as WebGLProgram;
+        
+        this.programInfo = {
+            program: this.shaderProgram,
+            attribLocations: {
+                vertexPosition: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
+                vertexColor: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexColor'),
+            },
+            uniformLocation: {
+                projectionMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
+                modelViewMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
+            },
+        };
+
+
         
         this.gameWorld = new GameWorld(Main.glContext, this.programInfo);
 
@@ -58,22 +74,6 @@ class Main {
 
     public static getGlContext(): WebGLRenderingContext {
         return Main.glContext as WebGLRenderingContext;
-    }
-
-    private initShaders(): void {
-        this.shaderProgram = this.initShaderProgram(Main.glContext, this.vsSource, this.fsSource) as WebGLProgram;
-        
-        this.programInfo = {
-            program: this.shaderProgram,
-            attribLocations: {
-                vertexPosition: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
-                vertexColor: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexColor'),
-            },
-            uniformLocation: {
-                projectionMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
-                modelViewMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
-            },
-        };
     }
 
     /**

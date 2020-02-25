@@ -13,7 +13,7 @@ class Mesh {
 
         this.vertexCount = indices.length;
 
-        this.positionBuffer = glContext.createBuffer();
+        this.positionBuffer = glContext.createBuffer() as WebGLBuffer;
         glContext.bindBuffer(glContext.ARRAY_BUFFER, this.positionBuffer);
         glContext.bufferData(glContext.ARRAY_BUFFER, new Float32Array(positions), glContext.STATIC_DRAW);
 
@@ -22,11 +22,11 @@ class Mesh {
         faceColours.forEach(faceColour => {
             colours = colours.concat(faceColour, faceColour, faceColour, faceColour);
         });
-        this.colourBuffer = glContext.createBuffer();
+        this.colourBuffer = glContext.createBuffer() as WebGLBuffer;
         glContext.bindBuffer(glContext.ARRAY_BUFFER, this.colourBuffer);
         glContext.bufferData(glContext.ARRAY_BUFFER, new Float32Array(colours), glContext.STATIC_DRAW);
 
-        this.indexBuffer = glContext.createBuffer();
+        this.indexBuffer = glContext.createBuffer() as WebGLBuffer;
         glContext.bindBuffer(glContext.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
         glContext.bufferData(glContext.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), glContext.STATIC_DRAW);
     }
