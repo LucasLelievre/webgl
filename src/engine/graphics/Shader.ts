@@ -1,3 +1,6 @@
+import simpleVert from './shaders/simple.vert'
+import simpleFrag from './shaders/simple.frag'
+
 class Shader {
 
     private program: WebGLProgram;
@@ -10,30 +13,11 @@ class Shader {
     private vertexShader: string;
     private fragmentShader: string;
 
-    constructor(pathV: string, pathS: string, ) {
-        //this.readVertexShader("./vertexShader.txt");
-        //TODO read the shaders from files
-        this.vertexShader = `
-            attribute vec4 aVertexPosition;
-            attribute vec4 aVertexColor;
-            
-            uniform mat4 uModelViewMatrix;
-            uniform mat4 uProjectionMatrix;
+    constructor() {
+        //TODO select the shader with a path
 
-            varying lowp vec4 vColor;
-
-            void main() {
-                gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
-                vColor = aVertexColor;
-            }`;
-
-        this.fragmentShader = `
-            varying lowp vec4 vColor;
-            
-            void main() {
-                //gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-                gl_FragColor = vColor;
-            }`;
+        this.vertexShader = simpleVert;
+        this.fragmentShader = simpleFrag;
 
         this.program = this.initShaderProgram(Main.getGlContext(), this.vertexShader, this.fragmentShader) as WebGLProgram;
 
