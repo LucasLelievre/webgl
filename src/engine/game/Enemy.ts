@@ -1,4 +1,7 @@
-class Enemy extends Entity {
+import { Entity } from "./Entity";
+import { Mesh } from "../graphics/Mesh";
+
+export class Enemy extends Entity {
 
     private hp: number;
 

@@ -1,6 +1,10 @@
-import { mat4 } from "../maths/gl-matrix"
+import { mat4 } from "../maths/gl-matrix";
+import { Mouse } from "../inputs/Mouse";
+import { Renderer } from "../graphics/Renderer";
+import { Player } from "./Player";
+import { Wall } from "./Wall";
 
-class GameWorld {
+export class GameWorld {
 
     private glContext: WebGLRenderingContext;
     private gameEntities: Entity[];
@@ -18,7 +22,7 @@ class GameWorld {
 
         this.camera = new Camera([0, -3, 0], [18, 0, 0]);
 
-        this.renderer = new Renderer(this.glContext, programInfo);
+        this.renderer = new Renderer();
 
         this.mouse = new Mouse();
 

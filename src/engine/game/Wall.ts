@@ -1,6 +1,6 @@
-import { mat4 } from "../maths/gl-matrix"
+import { mat4 } from "../maths/gl-matrix";
 
-class Wall extends Entity {
+export class Wall extends Entity {
 
     private size: vec3;
 

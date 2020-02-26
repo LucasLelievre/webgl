@@ -1,4 +1,6 @@
-abstract class Entity {
+import { Mesh } from "../graphics/Mesh";
+
+export abstract class Entity {
 
     private pos: vec3;
     private dir: vec3;

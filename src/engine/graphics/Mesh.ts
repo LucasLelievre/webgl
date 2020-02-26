@@ -1,4 +1,6 @@
-class Mesh {
+import { Main } from "../main";
+
+export class Mesh {
 
     private positionBuffer: WebGLBuffer;
     private colourBuffer: WebGLBuffer;

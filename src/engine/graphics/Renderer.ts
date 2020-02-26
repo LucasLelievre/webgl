@@ -1,6 +1,9 @@
-import { mat4 } from "../maths/gl-matrix"
+import { Main } from "../main";
+import { mat4 } from "../maths/gl-matrix";
+import { Shader } from "./Shader";
+import { Mesh } from "./Mesh";
 
-class Renderer {
+export class Renderer {
 
     //private glContext: WebGLRenderingContext;
     //private programInfo: object;
