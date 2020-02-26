@@ -27,6 +27,10 @@ class Shader {
         this.modelViewMatrix = Main.getGlContext().getUniformLocation(this.program, 'uModelViewMatrix') as WebGLUniformLocation;
     }
 
+    public getProgram(): WebGLProgram {
+        return this.program;
+    }
+
     /**
      * return the vertex position attribute's location
      */
