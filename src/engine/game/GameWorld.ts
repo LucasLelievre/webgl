@@ -1,6 +1,7 @@
 import { mat4 } from "../maths/gl-matrix";
 import { Mouse } from "../inputs/Mouse";
 import { Renderer } from "../graphics/Renderer";
+import { Entity } from "./Entity";
 import { Player } from "./Player";
 import { Wall } from "./Wall";
 
