@@ -1,4 +1,5 @@
 import { mat4 } from "../maths/gl-matrix";
+import { Main } from "../main";
 import { Mouse } from "../inputs/Mouse";
 import { Renderer } from "../graphics/Renderer";
 import { Entity } from "./Entity";
@@ -7,7 +8,6 @@ import { Wall } from "./Wall";
 
 export class GameWorld {
 
-    private glContext: WebGLRenderingContext;
     private gameEntities: Entity[];
     private camera: Camera;
     private renderer: Renderer;
@@ -15,9 +15,7 @@ export class GameWorld {
     private keyboard: Keyboard;
 
 
-    constructor(glContext: WebGLRenderingContext, programInfo: object) {
-        this.glContext = glContext;
-
+    constructor() {
         //TODO tree for physics
         this.gameEntities = [];
 
@@ -55,10 +53,10 @@ export class GameWorld {
      */
     public resizeViewport(): void {
         //TODO maybe something better (change only if size is changed)
-        if (this.glContext.canvas.width != window.innerWidth || this.glContext.canvas.height != window.innerHeight) {
-            this.glContext.canvas.width = window.innerWidth;
-            this.glContext.canvas.height = window.innerHeight;
-            this.glContext.viewport(0,0,this.glContext.canvas.width,this.glContext.canvas.height);
+        if (Main.getGlContext().canvas.width != window.innerWidth || Main.getGlContext().canvas.height != window.innerHeight) {
+            Main.getGlContext().canvas.width = window.innerWidth;
+            Main.getGlContext().canvas.height = window.innerHeight;
+            Main.getGlContext().viewport(0,0,Main.getGlContext().canvas.width,Main.getGlContext().canvas.height);
             this.renderer.resize();
         }
     }
@@ -81,12 +79,12 @@ export class GameWorld {
         
         this.resizeViewport();
 
-        this.glContext.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
-        this.glContext.clearDepth(1.0);                 // Clear everything
-        this.glContext.enable(this.glContext.DEPTH_TEST);           // Enable depth testing
-        this.glContext.depthFunc(this.glContext.LEQUAL);            // TODO what is this
+        Main.getGlContext().clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
+        Main.getGlContext().clearDepth(1.0);                 // Clear everything
+        Main.getGlContext().enable(Main.getGlContext().DEPTH_TEST);           // Enable depth testing
+        Main.getGlContext().depthFunc(Main.getGlContext().LEQUAL);            // TODO what is this
 
-        this.glContext.clear(this.glContext.COLOR_BUFFER_BIT | this.glContext.DEPTH_BUFFER_BIT);
+        Main.getGlContext().clear(Main.getGlContext().COLOR_BUFFER_BIT | Main.getGlContext().DEPTH_BUFFER_BIT);
 
         const modelViewMatrix = mat4.create();
 

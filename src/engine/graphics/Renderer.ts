@@ -5,15 +5,11 @@ import { Mesh } from "./Mesh";
 
 export class Renderer {
 
-    //private glContext: WebGLRenderingContext;
-    //private programInfo: object;
     private shader: Shader;
 
     private projectionMatrix: mat4;
 
-    constructor(/*glContext: WebGLRenderingContext, programInfo: object*/) {
-        //this.glContext = glContext;
-        //this.programInfo = programInfo;
+    constructor() {
         this.shader = new Shader();
 
         this.projectionMatrix = mat4.create();

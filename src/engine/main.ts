@@ -9,59 +9,14 @@ export class Main {
     // GL context
     private static glContext = Main.canvas.getContext("webgl") as WebGLRenderingContext;
 
-    //TODO read the shaders from files
-    // Vertex Shader
-    private vsSource = `
-        attribute vec4 aVertexPosition;
-        attribute vec4 aVertexColor;
-        
-        uniform mat4 uModelViewMatrix;
-        uniform mat4 uProjectionMatrix;
-
-        varying lowp vec4 vColor;
-
-        void main() {
-            gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
-            vColor = aVertexColor;
-        }`;
-    // Fragment shader
-    private fsSource = `
-        varying lowp vec4 vColor;
-        
-        void main() {
-            //gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-            gl_FragColor = vColor;
-        }`;
-
-    private shaderProgram: WebGLProgram;
-    private programInfo: object;
-
     private gameWorld: GameWorld;
 
     private oldTime: number;
     private deltaTime: number;
 
     constructor() {
-
-        /* Initialize shaders */
-
-        this.shaderProgram = this.initShaderProgram(Main.glContext, this.vsSource, this.fsSource) as WebGLProgram;
         
-        this.programInfo = {
-            program: this.shaderProgram,
-            attribLocations: {
-                vertexPosition: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
-                vertexColor: Main.glContext.getAttribLocation(this.shaderProgram, 'aVertexColor'),
-            },
-            uniformLocation: {
-                projectionMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
-                modelViewMatrix: Main.glContext.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
-            },
-        };
-
-
-        
-        this.gameWorld = new GameWorld(Main.glContext, this.programInfo);
+        this.gameWorld = new GameWorld();
 
         this.initEvents();
 
