@@ -1,6 +1,4 @@
-import { vec2 } from "../maths/gl-matrix"
-
-export class Mouse {
+class Mouse {
 
     private pos: vec2;
     private buttons: boolean[];

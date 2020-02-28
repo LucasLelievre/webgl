@@ -1,8 +1,4 @@
-import { Entity } from "./Entity";
-import { Mesh } from "../graphics/Mesh";
-import { mat4 } from "../maths/gl-matrix"
-
-export class Player extends Entity {
+class Player extends Entity {
 
     private hp: number;
 

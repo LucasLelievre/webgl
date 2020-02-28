@@ -1,12 +1,4 @@
-import { mat4 } from "../maths/gl-matrix";
-import { Main } from "../main";
-import { Mouse } from "../inputs/Mouse";
-import { Renderer } from "../graphics/Renderer";
-import { Entity } from "./Entity";
-import { Player } from "./Player";
-import { Wall } from "./Wall";
-
-export class GameWorld {
+class GameWorld {
 
     private gameEntities: Entity[];
     private camera: Camera;

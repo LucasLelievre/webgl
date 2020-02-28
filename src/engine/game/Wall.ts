@@ -1,8 +1,4 @@
-import { mat4 } from "../maths/gl-matrix";
-import { Entity } from "./Entity";
-import { Mesh } from "../graphics/Mesh";
-
-export class Wall extends Entity {
+class Wall extends Entity {
 
     private size: vec3;
 

@@ -1,9 +1,4 @@
-import { Main } from "../main";
-import { mat4 } from "../maths/gl-matrix";
-import { Shader } from "./Shader";
-import { Mesh } from "./Mesh";
-
-export class Renderer {
+class Renderer {
 
     private shader: Shader;
 
