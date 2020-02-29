@@ -1,17 +1,13 @@
-import { mat4 } from "../maths/gl-matrix";
-import { Entity } from "./Entity";
-import { Mesh } from "../graphics/Mesh";
+class Wall extends Entity {
 
-export class Wall extends Entity {
-
-    private size: vec3;
+    private size: Float32Array;
 
     /**
      * Creates a Wall
      * @param {int} x position on the X axis
      * @param {int} y position on the Y axis
      */
-    constructor(pos: vec3, dir: vec3, size: vec3) {
+    constructor(pos: Float32Array, dir: Float32Array, size: Float32Array) {
         //TODO wall mesh
         super(pos, dir, Mesh.getPlayerMesh());
         this.size = size;
@@ -30,7 +26,7 @@ export class Wall extends Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: mat4) {
+    public draw(modelViewMatrix: Float32List) {
         // Draw your stuff
 
         // Reset the model-view matrix
@@ -41,8 +37,8 @@ export class Wall extends Entity {
         //Scale         out             in              scale
         mat4.scale(modelViewMatrix, modelViewMatrix, this.size);
         // Rotation     out             in              angle (radian)          axis
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, [1, 0, 0]);
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, [0, 1, 0]);
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, [0, 0, 1]);
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, vec3.fromValues(1, 0, 0));
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, vec3.fromValues(0, 1, 0));
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, vec3.fromValues(0, 0, 1));
     }
 }

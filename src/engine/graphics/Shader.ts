@@ -1,8 +1,4 @@
-import { Main } from "../main";
-import simpleVert from './shaders/simple.vert';
-import simpleFrag from './shaders/simple.frag';
-
-export class Shader {
+class Shader {
 
     private program: WebGLProgram;
 

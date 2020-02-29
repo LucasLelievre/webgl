@@ -1,9 +1,9 @@
 class Camera {
 
-    private dir: vec3;
-    private pos: vec3;
+    private dir: Float32Array;
+    private pos: Float32Array;
 
-    constructor(pos: vec3, dir: vec3) {
+    constructor(pos: Float32Array, dir: Float32Array) {
         this.dir = dir;
         this.pos = pos;
     }
@@ -12,11 +12,11 @@ class Camera {
         //TODO camera update
     }
 
-    public getDir(): vec3 {
+    public getDir(): Float32Array {
         return this.dir;
     }
 
-    public getPos(): vec3 {
+    public getPos(): Float32Array {
         return this.pos;
     }
 }

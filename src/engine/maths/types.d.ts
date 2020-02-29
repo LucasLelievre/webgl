@@ -1,39 +1,17 @@
-// prettier-ignore
-declare type mat2 =
-  | [number, number, 
-     number, number]
-  | Float32Array;
+declare class mat4 {
+  static create(): Float32List;
+  static perspective(out: Float32List, fov: number, ratio: number, near: number, far: number): void;
+  static identity(out: Float32List): void;
+  static translate(out: Float32List, int: Float32List, pos: Float32Array): void;
+  static scale(out: Float32List, int: Float32List, size: Float32Array): void;
+  static rotate(out: Float32List, int: Float32List, angle: number, axis: Float32Array): void;
+}
 
-// prettier-ignore
-declare type mat2d =
-  | [number, number, 
-     number, number, 
-     number, number]
-  | Float32Array;
+declare class vec2 {
+  static fromValues(x: number, y: number): Float32Array;
+  static set(out: Float32Array, x: number, y: number): void;
+}
 
-// prettier-ignore
-declare type mat3 =
-  | [number, number, number, 
-     number, number, number, 
-     number, number, number]
-  | Float32Array;
-
-// prettier-ignore
-declare type mat4 =
-  | [number, number, number, number,
-     number, number, number, number,
-     number, number, number, number,
-     number, number, number, number]
-  | Float32Array;
-
-declare type quat = [number, number, number, number] | Float32Array;
-
-// prettier-ignore
-declare type quat2 =
-  | [number, number, number, number, 
-    number, number, number, number]
-  | Float32Array;
-
-declare type vec2 = [number, number] | Float32Array;
-declare type vec3 = [number, number, number] | Float32Array;
-declare type vec4 = [number, number, number, number] | Float32Array;
+declare class vec3 {
+  static fromValues(x: number, y: number, z: number): Float32Array;
+}

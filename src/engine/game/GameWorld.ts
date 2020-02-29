@@ -1,12 +1,4 @@
-import { mat4 } from "../maths/gl-matrix";
-import { Main } from "../main";
-import { Mouse } from "../inputs/Mouse";
-import { Renderer } from "../graphics/Renderer";
-import { Entity } from "./Entity";
-import { Player } from "./Player";
-import { Wall } from "./Wall";
-
-export class GameWorld {
+class GameWorld {
 
     private gameEntities: Entity[];
     private camera: Camera;
@@ -19,7 +11,7 @@ export class GameWorld {
         //TODO tree for physics
         this.gameEntities = [];
 
-        this.camera = new Camera([0, -3, 0], [18, 0, 0]);
+        this.camera = new Camera(vec3.fromValues(0, -3, 0), vec3.fromValues(18, 0, 0));
 
         this.renderer = new Renderer();
 
@@ -36,8 +28,8 @@ export class GameWorld {
     private init(): void {
         // Here are the entities that will be part of the game
 
-        this.addGameEntity(new Player([0, 0, -7], [0, 0, 1]));
-        this.addGameEntity(new Wall([0, -1, -7], [1, 0, 0], [3, 0.1, 2]));
+        this.addGameEntity(new Player(vec3.fromValues(0, 0, -7), vec3.fromValues(0, 0, 1)));
+        this.addGameEntity(new Wall(vec3.fromValues(0, -1, -7), vec3.fromValues(1, 0, 0), vec3.fromValues(3, 0.1, 2)));
     }
 
     /**
@@ -94,9 +86,9 @@ export class GameWorld {
             mat4.identity(modelViewMatrix);
 
             // move world to camera
-            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[0] * Math.PI / 180, [1, 0, 0]);
-            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[1] * Math.PI / 180, [0, 1, 0]);
-            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[2] * Math.PI / 180, [0, 0, 1]);
+            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[0] * Math.PI / 180, vec3.fromValues(1, 0, 0));
+            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[1] * Math.PI / 180, vec3.fromValues(0, 1, 0));
+            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[2] * Math.PI / 180, vec3.fromValues(0, 0, 1));
             mat4.translate(modelViewMatrix, modelViewMatrix, this.camera.getPos());
 
             entity.draw(modelViewMatrix);

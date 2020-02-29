@@ -1,11 +1,9 @@
-import { GameWorld } from "./game/GameWorld";
-
 /**
  * The class that starts it all
  */
-export class Main {
+class Main {
     // the canvas that will be drawn on
-    private static canvas = document.getElementById("#glCanvas") as HTMLCanvasElement;
+    private static canvas = document.querySelector("#glCanvas") as HTMLCanvasElement;
     // GL context
     private static glContext = Main.canvas.getContext("webgl") as WebGLRenderingContext;
 

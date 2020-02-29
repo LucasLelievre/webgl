@@ -1,11 +1,8 @@
-import { Entity } from "./Entity";
-import { Mesh } from "../graphics/Mesh";
-
-export class Enemy extends Entity {
+class Enemy extends Entity {
 
     private hp: number;
 
-    constructor(pos: vec3, dir: vec3) {
+    constructor(pos: Float32Array, dir: Float32Array) {
         //TODO enemy mesh
         super(pos, dir, Mesh.getPlayerMesh());
 
@@ -24,7 +21,7 @@ export class Enemy extends Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: mat4) {
+    public draw(modelViewMatrix: Float32List) {
         // Draw your stuff
         //TODO reset translate rotate scalate
     }

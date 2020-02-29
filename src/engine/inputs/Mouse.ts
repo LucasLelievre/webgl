@@ -1,8 +1,6 @@
-import { vec2 } from "../maths/gl-matrix"
+class Mouse {
 
-export class Mouse {
-
-    private pos: vec2;
+    private pos: Float32Array;
     private buttons: boolean[];
 
     constructor() {
