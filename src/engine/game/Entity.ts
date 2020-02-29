@@ -1,7 +1,7 @@
 abstract class Entity {
 
-    private pos: vec3;
-    private dir: vec3;
+    private pos: Float32Array;
+    private dir: Float32Array;
     private mesh: Mesh;
 
     /**
@@ -10,7 +10,7 @@ abstract class Entity {
      * @param {int} y position Y
      * @param {int} Z position Z
      */
-    constructor(pos: vec3, dir: vec3, mesh: Mesh) {
+    constructor(pos: Float32Array, dir: Float32Array, mesh: Mesh) {
         this.pos = pos;
         this.dir = dir;
         this.mesh = mesh;
@@ -19,14 +19,14 @@ abstract class Entity {
     /**
      * Returns the entity's position
      */
-    public getPos(): vec3 {
+    public getPos(): Float32Array {
         return this.pos;
     }
 
     /**
      * Returns the entity's direction
      */
-    public getDir(): vec3 {
+    public getDir(): Float32Array {
         return this.dir;
     }
 
@@ -49,7 +49,7 @@ abstract class Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: mat4) {
+    public draw(modelViewMatrix: Float32List) {
         // Draw your stuff
     }
 }

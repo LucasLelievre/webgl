@@ -2,7 +2,7 @@ class Player extends Entity {
 
     private hp: number;
 
-    constructor(pos: vec3, dir: vec3) {
+    constructor(pos: Float32Array, dir: Float32Array) {
         super(pos, dir, Mesh.getPlayerMesh());
         this.hp = 3;
     }
@@ -20,7 +20,7 @@ class Player extends Entity {
      * Draws the entity
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: mat4) {
+    public draw(modelViewMatrix: Float32List) {
         // alright, lets draw some shit
 
         // Reset the model-view matrix
@@ -32,9 +32,9 @@ class Player extends Entity {
 
         // Rotation
         //              out             int             angle (radian)          axis
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, [1, 0, 0]);
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, [0, 1, 0]);
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, [0, 0, 1]);
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, vec3.fromValues(1, 0, 0));
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, vec3.fromValues(0, 1, 0));
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, vec3.fromValues(0, 0, 1));
     }
 
     public strike() {

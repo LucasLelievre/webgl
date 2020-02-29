@@ -2,7 +2,7 @@ class Renderer {
 
     private shader: Shader;
 
-    private projectionMatrix: mat4;
+    private projectionMatrix: Float32List;
 
     constructor() {
         this.shader = new Shader();
@@ -18,7 +18,7 @@ class Renderer {
             100.0)                                                          // z far
     }
 
-    public render(mesh: Mesh, modelViewMatrix: mat4): void {
+    public render(mesh: Mesh, modelViewMatrix: Float32List): void {
         // Tell WebGL how to pull out the positions from the position buffer into the vertexPosition attribute
         {
             const numComponents = 3;  // pull out 2 values per iteration
