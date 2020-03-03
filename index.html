@@ -28,6 +28,25 @@
       const vec3 = glMatrix.vec3;
       const vec2 = glMatrix.vec2;
       const mat4 = glMatrix.mat4;
+
+      const simpleVert = `attribute vec4 aVertexPosition;
+                          attribute vec4 aVertexColor;
+                                      
+                          uniform mat4 uModelViewMatrix;
+                          uniform mat4 uProjectionMatrix;
+
+                          varying lowp vec4 vColor;
+
+                          void main() {
+                              gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+                              vColor = aVertexColor;
+                          }`;
+      const simpleFrag = `varying lowp vec4 vColor;
+                          
+                          void main() {
+                              //gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+                              gl_FragColor = vColor;
+                          }`;
     </script>
     <!-- Inputs -->
     <script src="build/engine/inputs/Mouse.js"></script>
