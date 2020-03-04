@@ -23,9 +23,6 @@ class Player extends Entity {
     public draw(modelViewMatrix: Float32List) {
         // alright, lets draw some shit
 
-        // Reset the model-view matrix
-        mat4.identity(modelViewMatrix);
-
         // Translate
         //              out             in              translation
         mat4.translate(modelViewMatrix, modelViewMatrix, this.getPos());

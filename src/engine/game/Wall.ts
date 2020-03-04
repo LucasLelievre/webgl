@@ -29,9 +29,6 @@ class Wall extends Entity {
     public draw(modelViewMatrix: Float32List) {
         // Draw your stuff
 
-        // Reset the model-view matrix
-        mat4.identity(modelViewMatrix);
-
         // Translate    out             in              translation
         mat4.translate(modelViewMatrix, modelViewMatrix, this.getPos());
         //Scale         out             in              scale
