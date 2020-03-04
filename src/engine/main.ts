@@ -32,6 +32,16 @@ class Main {
     }
 
     private initEvents(): void {
+        // Initialize the lock and exit functions
+        Main.canvas.requestPointerLock = Main.canvas.requestPointerLock; //TODO tester cross browser
+        document.exitPointerLock = document.exitPointerLock;
+        // lock the pointer on the canvas
+        Main.canvas.addEventListener('onclick', Main.canvas.requestPointerLock, false);
+        //Main.canvas.requestPointerLock();
+
+        document.addEventListener('pointerlockchange', (e) => this.lockChangeAlert(e), false);
+        document.addEventListener('mozpointerlockchange', (e) => this.lockChangeAlert(e), false);
+
         Main.canvas.addEventListener("mousedown", (e) => this.gameWorld.getMouse().mouseDown(e), false);
         Main.canvas.addEventListener("mouseup", (e) => this.gameWorld.getMouse().mouseUp(e) , false);
         Main.canvas.addEventListener("mouseout", (e) => this.gameWorld.getMouse().mouseUp(e) , false);
@@ -40,6 +50,17 @@ class Main {
         document.addEventListener("keydown", (e) => this.gameWorld.getKeyboard().keyDown(e.key), false);
         document.addEventListener("keyup", (e) => this.gameWorld.getKeyboard().keyUp(e.key), false);
     }
+
+    private lockChangeAlert(e: Event): void {
+        console.log(e);
+        if (document.pointerLockElement === Main.canvas) {
+          console.log('The pointer lock status is now locked');
+          this.gameWorld.getMouse().setLock(true);
+        } else {
+          console.log('The pointer lock status is now unlocked');
+          this.gameWorld.getMouse().setLock(false);
+        }
+      }
 
     private update(newTime: number): void {
         this.deltaTime = newTime - this.oldTime;
