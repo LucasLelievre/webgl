@@ -23,6 +23,10 @@ class Mouse {
         vec2.set(this.pos, e.pageX, e.pageY);
     }
 
+    public getPos(): Float32Array{
+        return this.pos;
+    }
+
     public getButts(): boolean[] {
         return this.buttons;
     }

@@ -8,7 +8,7 @@ class Camera {
         this.pos = pos;
     }
 
-    public update(heys: string[]): void {
+    public update(mousePos: Float32Array, mouseButts: boolean[], keys: string[]): void {
         //TODO camera update
     }
 

@@ -58,9 +58,9 @@ class GameWorld {
      * @param deltaTime time since last update
      */
     public update(deltaTime: number): void {
-        this.camera.update(this.keyboard.getKeys());
+        this.camera.update(this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         this.gameEntities.forEach(entity => {
-            entity.update(deltaTime, this.keyboard.getKeys());
+            entity.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         });
     }
 
