@@ -2,10 +2,12 @@ class Mouse {
 
     private pos: Float32Array;
     private buttons: boolean[];
+    private lock: boolean;
 
     constructor() {
         this.pos = vec2.fromValues(0.0, 0.0);
         this.buttons = [false, false, false, false];
+        this.lock = false;
     }
 
     public mouseDown(e: MouseEvent): void {
@@ -29,5 +31,13 @@ class Mouse {
 
     public getButts(): boolean[] {
         return this.buttons;
+    }
+
+    public setLock(set: boolean): void {
+        this.lock = set;
+    }
+
+    public getLock(): boolean {
+        return this.lock;
     }
 }
