@@ -7,7 +7,7 @@ class Keyboard {
     }
 
     public keyDown(keyCode: string): void {
-        if (this.keys.indexOf(keyCode) == -1) this.keys.push(keyCode.toLocaleUpperCase());
+        if (this.keys.indexOf(keyCode.toLocaleUpperCase()) == -1) this.keys.push(keyCode.toLocaleUpperCase());
     }
 
     public keyUp(keyCode: string): void {
