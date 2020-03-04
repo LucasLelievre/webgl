@@ -36,8 +36,7 @@ class Main {
         Main.canvas.requestPointerLock = Main.canvas.requestPointerLock; //TODO tester cross browser
         document.exitPointerLock = document.exitPointerLock;
         // lock the pointer on the canvas
-        Main.canvas.addEventListener('onclick', Main.canvas.requestPointerLock, false);
-        //Main.canvas.requestPointerLock();
+        Main.canvas.addEventListener('click', Main.canvas.requestPointerLock, false);
 
         document.addEventListener('pointerlockchange', (e) => this.lockChangeAlert(e), false);
         document.addEventListener('mozpointerlockchange', (e) => this.lockChangeAlert(e), false);
