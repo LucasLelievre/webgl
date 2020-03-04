@@ -14,4 +14,7 @@ declare class vec2 {
 
 declare class vec3 {
   static fromValues(x: number, y: number, z: number): Float32Array;
+  static add(out: Float32Array, vec3in: Float32Array, vec3add: Float32Array): void;
+  static subtract(out: Float32Array, vec3in: Float32Array, vec3add: Float32Array): void;
+
 }
