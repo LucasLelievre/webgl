@@ -48,7 +48,7 @@ class GameWorld {
         if (Main.getGlContext().canvas.width != window.innerWidth || Main.getGlContext().canvas.height != window.innerHeight) {
             Main.getGlContext().canvas.width = window.innerWidth;
             Main.getGlContext().canvas.height = window.innerHeight;
-            Main.getGlContext().viewport(0,0,Main.getGlContext().canvas.width,Main.getGlContext().canvas.height);
+            Main.getGlContext().viewport(0, 0, Main.getGlContext().canvas.width, Main.getGlContext().canvas.height);
             this.renderer.resize();
         }
     }
@@ -59,7 +59,7 @@ class GameWorld {
      */
     public update(deltaTime: number): void {
         //console.log(this.mouse.getPos());
-        
+
         this.camera.update(this.mouse.getLock(), this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         this.gameEntities.forEach(entity => {
             entity.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
@@ -70,7 +70,7 @@ class GameWorld {
      * Draw all the game's entites
      */
     public render(): void {
-        
+
         this.resizeViewport();
 
         Main.getGlContext().clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque

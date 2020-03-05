@@ -13,7 +13,7 @@ class Main {
     private deltaTime: number;
 
     constructor() {
-        
+
         this.gameWorld = new GameWorld();
 
         this.initEvents();
@@ -42,18 +42,17 @@ class Main {
         document.addEventListener('mozpointerlockchange', (e) => this.lockChangeAlert(e), false);
 
         Main.canvas.addEventListener("mousedown", (e) => this.gameWorld.getMouse().mouseDown(e), false);
-        Main.canvas.addEventListener("mouseup", (e) => this.gameWorld.getMouse().mouseUp(e) , false);
-        Main.canvas.addEventListener("mouseout", (e) => this.gameWorld.getMouse().mouseUp(e) , false);
-        Main.canvas.addEventListener("mousemove", (e) => this.gameWorld.getMouse().mouseMove(e) , false);
+        Main.canvas.addEventListener("mouseup", (e) => this.gameWorld.getMouse().mouseUp(e), false);
+        Main.canvas.addEventListener("mouseout", (e) => this.gameWorld.getMouse().mouseUp(e), false);
+        Main.canvas.addEventListener("mousemove", (e) => this.gameWorld.getMouse().mouseMove(e), false);
 
         document.addEventListener("keydown", (e) => this.gameWorld.getKeyboard().keyDown(e.key), false);
         document.addEventListener("keyup", (e) => this.gameWorld.getKeyboard().keyUp(e.key), false);
     }
 
     private lockChangeAlert(e: Event): void {
-        if (document.pointerLockElement === Main.canvas) this.gameWorld.getMouse().setLock(true);
-        else this.gameWorld.getMouse().setLock(false);
-      }
+        this.gameWorld.getMouse().setLock(document.pointerLockElement === Main.canvas);
+    }
 
     private update(newTime: number): void {
         this.deltaTime = newTime - this.oldTime;
@@ -75,4 +74,4 @@ class Main {
 
 }
 
-window.onload = function() { new Main() }
+window.onload = function () { new Main() }
