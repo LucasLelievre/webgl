@@ -22,10 +22,9 @@ class Mouse {
 
     public mouseMove(e: MouseEvent): void {
         e.preventDefault();
-        //vec2.set(this.pos, e.pageX, e.pageY);
         vec2.add(this.pos, this.pos, vec2.fromValues(e.movementX, e.movementY));
-        vec2.normalize(this.pos, this.pos);
         console.log(this.pos);
+        
     }
 
     public getPos(): Float32Array{

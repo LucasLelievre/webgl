@@ -19,8 +19,8 @@ class Camera {
 
         // Carmera rotation
         if (mouseLock) {
-            vec3.rotateX(this.dir, this.dir, this.pos, mousePos[0]);
-            vec3.rotateY(this.dir, this.dir, this.pos, mousePos[1]);
+            //vec2.scale(mousePos, mousePos, 0.5);
+            vec3.set(this.dir, mousePos[1]/4, mousePos[0]/4, 0.0);
         }
     }
 
