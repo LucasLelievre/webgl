@@ -11,7 +11,7 @@ class GameWorld {
         //TODO tree for physics
         this.gameEntities = [];
 
-        this.camera = new Camera(vec3.fromValues(0, -3, 0), vec3.fromValues(18, 0, 0));
+        this.camera = new Camera(vec3.fromValues(0, -1, 0), vec3.fromValues(0, 0, 0));
 
         this.renderer = new Renderer();
 
@@ -58,7 +58,9 @@ class GameWorld {
      * @param deltaTime time since last update
      */
     public update(deltaTime: number): void {
-        this.camera.update(this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
+        //console.log(this.mouse.getPos());
+        
+        this.camera.update(this.mouse.getLock(), this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         this.gameEntities.forEach(entity => {
             entity.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         });

@@ -8,12 +8,20 @@ class Camera {
         this.pos = pos;
     }
 
-    public update(mousePos: Float32Array, mouseButts: boolean[], keys: string[]): void {
+    public update(mouseLock: boolean, mousePos: Float32Array, mouseButts: boolean[], keys: string[]): void {
         //TODO camera update
+
+        // Camrera translation
         if (keys.indexOf("A") != -1) vec3.add(this.pos, this.pos, vec3.fromValues(0.1, 0.0, 0.0)); // left
         if (keys.indexOf("D") != -1) vec3.subtract(this.pos, this.pos, vec3.fromValues(0.1, 0.0, 0.0)); // right
         if (keys.indexOf("S") != -1) vec3.subtract(this.pos, this.pos, vec3.fromValues(0.0, 0.0, 0.1)); // forward
         if (keys.indexOf("W") != -1) vec3.add(this.pos, this.pos, vec3.fromValues(0.0, 0.0, 0.1)); // backward
+
+        // Carmera rotation
+        if (mouseLock) {
+            vec3.rotateX(this.dir, this.dir, this.pos, mousePos[0]);
+            vec3.rotateY(this.dir, this.dir, this.pos, mousePos[1]);
+        }
     }
 
     public getDir(): Float32Array {
