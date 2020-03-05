@@ -51,14 +51,8 @@ class Main {
     }
 
     private lockChangeAlert(e: Event): void {
-        console.log(e);
-        if (document.pointerLockElement === Main.canvas) {
-          console.log('The pointer lock status is now locked');
-          this.gameWorld.getMouse().setLock(true);
-        } else {
-          console.log('The pointer lock status is now unlocked');
-          this.gameWorld.getMouse().setLock(false);
-        }
+        if (document.pointerLockElement === Main.canvas) this.gameWorld.getMouse().setLock(true);
+        else this.gameWorld.getMouse().setLock(false);
       }
 
     private update(newTime: number): void {
