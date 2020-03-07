@@ -2,6 +2,7 @@ abstract class Entity {
 
     private pos: Float32Array;
     private dir: Float32Array;
+    private size: Float32Array;
     private mesh: Mesh;
 
     /**
@@ -10,9 +11,10 @@ abstract class Entity {
      * @param {int} y position Y
      * @param {int} Z position Z
      */
-    constructor(pos: Float32Array, dir: Float32Array, mesh: Mesh) {
+    constructor(pos: Float32Array, dir: Float32Array, size: Float32Array, mesh: Mesh) {
         this.pos = pos;
         this.dir = dir;
+        this.size = size;
         this.mesh = mesh;
     }
 

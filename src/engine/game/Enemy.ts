@@ -4,7 +4,7 @@ class Enemy extends Entity {
 
     constructor(pos: Float32Array, dir: Float32Array) {
         //TODO enemy mesh
-        super(pos, dir, Mesh.getPlayerMesh());
+        super(pos, dir, vec3.fromValues(1.0, 1.0, 1.0), Mesh.getPlayerMesh());
 
         this.hp = 3;
     }

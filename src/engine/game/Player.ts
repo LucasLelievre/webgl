@@ -3,7 +3,7 @@ class Player extends Entity {
     private hp: number;
 
     constructor(pos: Float32Array, dir: Float32Array) {
-        super(pos, dir, Mesh.getPlayerMesh());
+        super(pos, dir, vec3.fromValues(1.0, 1.0, 1.0), Mesh.getPlayerMesh());
         this.hp = 3;
     }
 

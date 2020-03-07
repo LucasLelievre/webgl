@@ -1,6 +1,5 @@
 class Wall extends Entity {
 
-    private size: Float32Array;
 
     /**
      * Creates a Wall
@@ -9,8 +8,7 @@ class Wall extends Entity {
      */
     constructor(pos: Float32Array, dir: Float32Array, size: Float32Array) {
         //TODO wall mesh
-        super(pos, dir, Mesh.getPlayerMesh());
-        this.size = size;
+        super(pos, dir, size, Mesh.getPlayerMesh());
     }
 
     /**
