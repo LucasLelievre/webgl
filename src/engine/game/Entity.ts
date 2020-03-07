@@ -4,6 +4,7 @@ abstract class Entity {
     private dir: Float32Array;
     private size: Float32Array;
     private mesh: Mesh;
+    private children: Entity[];
 
     /**
      * Create an element tht will be part of the game
@@ -16,6 +17,15 @@ abstract class Entity {
         this.dir = dir;
         this.size = size;
         this.mesh = mesh;
+        this.children = [];
+    }
+
+    /**
+     * Add a child to the entity
+     * @param child entity to add to the children
+     */
+    public addChild(child: Entity): void {
+        this.children.push(child);
     }
 
     /**
