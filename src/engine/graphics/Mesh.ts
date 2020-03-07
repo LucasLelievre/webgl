@@ -162,4 +162,8 @@ class Mesh {
         ];
         return new Mesh(positions, faceColours, indices);
     }
+
+    public static getEmptyMesh() {
+        return new Mesh([], [], []);
+    }
 }
