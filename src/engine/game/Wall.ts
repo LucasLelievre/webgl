@@ -24,8 +24,8 @@ class Wall extends Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: Float32List) {
+    public draw(modelViewMatrix: Float32List, renderer: Renderer) {
         // Draw your stuff
-        super.draw(modelViewMatrix);
+        super.draw(modelViewMatrix, renderer);
     }
 }

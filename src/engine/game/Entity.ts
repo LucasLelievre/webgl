@@ -63,7 +63,7 @@ abstract class Entity {
      * Draws the element
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: Float32List) {
+    public draw(modelViewMatrix: Float32List, renderer: Renderer) {
         // Draw your stuff
 
         // Translate    out             in              translation
@@ -75,7 +75,9 @@ abstract class Entity {
         mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, vec3.fromValues(0, 1, 0));
         mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, vec3.fromValues(0, 0, 1));
 
+        // Render the mesh with the updates modelViewMatrix
+        renderer.render(this.getMesh(), modelViewMatrix);
         // Draw the children
-        this.children.forEach(child => { child.draw(modelViewMatrix); });
+        this.children.forEach(child => { child.draw(modelViewMatrix, renderer); });
     }
 }

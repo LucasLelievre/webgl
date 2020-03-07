@@ -93,8 +93,8 @@ class GameWorld {
             mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[2] * Math.PI / 180, vec3.fromValues(0, 0, 1));
             mat4.translate(modelViewMatrix, modelViewMatrix, this.camera.getPos());
 
-            entity.draw(modelViewMatrix);
-            this.renderer.render(entity.getMesh(), modelViewMatrix);
+            entity.draw(modelViewMatrix, this.renderer);
+            //this.renderer.render(entity.getMesh(), modelViewMatrix);
         });
     }
 

@@ -5,7 +5,7 @@ class Player extends Entity {
     constructor(pos: Float32Array, dir: Float32Array) {
         super(pos, dir, vec3.fromValues(1.0, 1.0, 1.0), Mesh.getPlayerMesh());
         this.hp = 3;
-        super.addChild(new Wall(vec3.fromValues(1.0, 0.0, 0.0), vec3.fromValues(0.0, 0.0, 0.0), vec3.fromValues(1.0, 1.0, 1.0)));
+        //super.addChild(new Wall(vec3.fromValues(0.0, 3.0, 0.0), vec3.fromValues(0.0, 0.0, 0.0), vec3.fromValues(1.0, 1.0, 1.0)));
     }
 
     /**
@@ -22,11 +22,10 @@ class Player extends Entity {
      * Draws the entity
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public draw(modelViewMatrix: Float32List) {
+    public draw(modelViewMatrix: Float32List, renderer: Renderer) {
         // alright, lets draw some shit
 
-        //renderer.render(super.getMesh(), modelViewMatrix);
-        super.draw(modelViewMatrix);
+        super.draw(modelViewMatrix, renderer);
     }
 
     public strike() {
