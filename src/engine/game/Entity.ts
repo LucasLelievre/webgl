@@ -55,6 +55,8 @@ abstract class Entity {
      */
     public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]) {
         // Update the element
+        // Update the children
+        this.children.forEach(child => { child.update(deltaTime, mousePos, mouseButts, keys); });
     }
 
     /**

@@ -1,6 +1,5 @@
 class Wall extends Entity {
 
-
     /**
      * Creates a Wall
      * @param {int} x position on the X axis
@@ -15,7 +14,8 @@ class Wall extends Entity {
      * Updates the element since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number) {
+    public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]) {
+        super.update(deltaTime, mousePos, mouseButts, keys);
         // Update the element
         // To be honest, not much to do.
     }

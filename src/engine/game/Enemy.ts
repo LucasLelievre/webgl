@@ -13,7 +13,8 @@ class Enemy extends Entity {
      * Updates the element since the last frame
      * @param {float} deltaTime time elapsed since the last frame
      */
-    public update(deltaTime: number) {
+    public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]) {
+        super.update(deltaTime, mousePos, mouseButts, keys);
         // Update the element
     }
 

@@ -13,6 +13,7 @@ class Player extends Entity {
      * @param {float} deltaTime time elapsed since the last frame
      */
     public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]) {
+        super.update(deltaTime, mousePos, mouseButts, keys);
         // Update the entity
         //TODO movement based on keys
     }
