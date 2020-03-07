@@ -24,6 +24,6 @@ class Enemy extends Entity {
      */
     public draw(modelViewMatrix: Float32List) {
         // Draw your stuff
-        //TODO reset translate rotate scalate
+        super.draw(modelViewMatrix);
     }
 }

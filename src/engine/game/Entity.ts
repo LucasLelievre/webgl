@@ -65,5 +65,17 @@ abstract class Entity {
      */
     public draw(modelViewMatrix: Float32List) {
         // Draw your stuff
+
+        // Translate    out             in              translation
+        mat4.translate(modelViewMatrix, modelViewMatrix, this.getPos());
+        //Scale         out             in              scale
+        mat4.scale(modelViewMatrix, modelViewMatrix, this.size);
+        // Rotation     out             in              angle (radian)          axis
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, vec3.fromValues(1, 0, 0));
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, vec3.fromValues(0, 1, 0));
+        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, vec3.fromValues(0, 0, 1));
+
+        // Draw the children
+        this.children.forEach(child => { child.draw(modelViewMatrix); });
     }
 }

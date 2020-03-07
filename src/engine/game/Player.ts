@@ -25,15 +25,8 @@ class Player extends Entity {
     public draw(modelViewMatrix: Float32List) {
         // alright, lets draw some shit
 
-        // Translate
-        //              out             in              translation
-        mat4.translate(modelViewMatrix, modelViewMatrix, this.getPos());
-
-        // Rotation
-        //              out             int             angle (radian)          axis
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[0] * Math.PI, vec3.fromValues(1, 0, 0));
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[1] * Math.PI, vec3.fromValues(0, 1, 0));
-        mat4.rotate(modelViewMatrix, modelViewMatrix, this.getDir()[2] * Math.PI, vec3.fromValues(0, 0, 1));
+        //renderer.render(super.getMesh(), modelViewMatrix);
+        super.draw(modelViewMatrix);
     }
 
     public strike() {
