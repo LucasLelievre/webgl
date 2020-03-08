@@ -6,6 +6,7 @@ class Player extends Entity {
         super(pos, dir, vec3.fromValues(1.0, 1.0, 1.0), Mesh.getPlayerMesh());
         this.hp = 3;
         //super.addChild(new Wall(vec3.fromValues(0.0, 3.0, 0.0), vec3.fromValues(0.0, 0.0, 0.0), vec3.fromValues(1.0, 1.0, 1.0)));
+        //super.addChild(new Camera(vec3.fromValues(0, -1, 0), vec3.fromValues(0, 0, 0)));
     }
 
     /**

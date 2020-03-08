@@ -23,7 +23,7 @@ class Mouse {
     public mouseMove(e: MouseEvent): void {
         e.preventDefault();
         vec2.add(this.pos, this.pos, vec2.fromValues(e.movementX, e.movementY));
-        console.log(this.pos);
+        //console.log(this.pos);
         
     }
 
