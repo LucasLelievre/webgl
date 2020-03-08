@@ -2,29 +2,26 @@ class Mouse {
 
     private pos: Float32Array;
     private buttons: boolean[];
-    private lock: boolean;
 
     constructor() {
         this.pos = vec2.fromValues(0.0, 0.0);
+                    //  mouseLock butt0   butt1   butt2
         this.buttons = [false, false, false, false];
-        this.lock = false;
     }
 
     public mouseDown(e: MouseEvent): void {
         e.preventDefault();
-        this.buttons[e.button] = true;
+        this.buttons[e.button + 1] = true;        
     }
 
     public mouseUp(e: MouseEvent): void {
         e.preventDefault();
-        this.buttons[e.button] = false;
+        this.buttons[e.button + 1] = false;
     }
 
     public mouseMove(e: MouseEvent): void {
         e.preventDefault();
         vec2.add(this.pos, this.pos, vec2.fromValues(e.movementX, e.movementY));
-        //console.log(this.pos);
-        
     }
 
     public getPos(): Float32Array{
@@ -36,10 +33,6 @@ class Mouse {
     }
 
     public setLock(set: boolean): void {
-        this.lock = set;
-    }
-
-    public getLock(): boolean {
-        return this.lock;
+        this.buttons[0] = set;
     }
 }
