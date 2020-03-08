@@ -43,6 +43,14 @@ abstract class Entity {
     }
 
     /**
+     * Set the enity's direction
+     * @param newDir the new direction
+     */
+    public setDir(newDir: Float32Array): void {
+        this.dir = newDir;
+    }
+
+    /**
      * Returns the entity's mesh
      */
     public getMesh(): Mesh {
