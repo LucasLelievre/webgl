@@ -35,8 +35,8 @@ class Mouse {
     }
 
     public setLock(set: boolean): void {
-        this.buttons[0] = set;
-        if (set) vec3.copy(this.pos, this.oldPos);
+        if (set && !this.buttons[0]) vec3.copy(this.pos, this.oldPos);
         else vec3.copy(this.oldPos, this.pos);
+        this.buttons[0] = set;
     }
 }
