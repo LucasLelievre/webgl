@@ -19,6 +19,7 @@ declare class vec2 {
 declare class vec3 {
   static fromValues(x: number, y: number, z: number): Float32Array;
   static set(out: Float32Array, x: number, y: number, z: number): void;
+  static copy(out: Float32Array, input: Float32Array): void;
   static add(out: Float32Array, vec3in: Float32Array, vec3add: Float32Array): void;
   static subtract(out: Float32Array, vec3in: Float32Array, vec3add: Float32Array): void;
   static rotateX(out: Float32Array, input: Float32Array, origin: Float32Array, radian: number): void;

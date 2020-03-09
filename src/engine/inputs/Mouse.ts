@@ -1,10 +1,12 @@
 class Mouse {
 
     private pos: Float32Array;
+    private oldPos: Float32Array;
     private buttons: boolean[];
 
     constructor() {
         this.pos = vec2.fromValues(0.0, 0.0);
+        this.oldPos = vec2.fromValues(0.0, 0.0);
                     //  mouseLock butt0   butt1   butt2
         this.buttons = [false, false, false, false];
     }
@@ -34,5 +36,7 @@ class Mouse {
 
     public setLock(set: boolean): void {
         this.buttons[0] = set;
+        if (set) vec3.copy(this.pos, this.oldPos);
+        else vec3.copy(this.oldPos, this.pos);
     }
 }
