@@ -1,7 +1,10 @@
 abstract class Camera extends Entity {
 
-    constructor(pos: Float32Array, dir: Float32Array) {
+    private target: Entity;
+
+    constructor(pos: Float32Array, dir: Float32Array, target: Entity) {
         super(pos, dir, vec3.fromValues(0.0, 0.0, 0.0), Mesh.getEmptyMesh());
+        this.target = target;
     }
 
     public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]): void {
@@ -31,5 +34,9 @@ abstract class Camera extends Entity {
 
     public draw(modelViewMatrix: Float32List, renderer: Renderer) {
         super.draw(modelViewMatrix, renderer);
+    }
+
+    public getTarget(): Entity {
+        return this.target;
     }
 }
