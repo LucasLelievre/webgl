@@ -1,4 +1,4 @@
-class Camera extends Entity {
+abstract class Camera extends Entity {
 
     constructor(pos: Float32Array, dir: Float32Array) {
         super(pos, dir, vec3.fromValues(0.0, 0.0, 0.0), Mesh.getEmptyMesh());
