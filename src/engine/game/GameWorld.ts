@@ -81,18 +81,21 @@ class GameWorld {
 
         Main.getGlContext().clear(Main.getGlContext().COLOR_BUFFER_BIT | Main.getGlContext().DEPTH_BUFFER_BIT);
 
-        const modelViewMatrix = mat4.create();
+        var modelViewMatrix = mat4.create();
+        const lookAt = this.camera.getView();
 
         this.gameEntities.forEach(entity => {
 
             // Reset the model-view matrix
-            mat4.identity(modelViewMatrix);
+            //mat4.identity(modelViewMatrix);
+            //modelViewMatrix = lookAt;
+            mat4.copy(modelViewMatrix, lookAt);
 
             // move world to camera
-            mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[0] * Math.PI / 180, vec3.fromValues(1, 0, 0));
+            /*mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[0] * Math.PI / 180, vec3.fromValues(1, 0, 0));
             mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[1] * Math.PI / 180, vec3.fromValues(0, 1, 0));
             mat4.rotate(modelViewMatrix, modelViewMatrix, this.camera.getDir()[2] * Math.PI / 180, vec3.fromValues(0, 0, 1));
-            mat4.translate(modelViewMatrix, modelViewMatrix, this.camera.getPos());
+            mat4.translate(modelViewMatrix, modelViewMatrix, this.camera.getPos());*/
 
             entity.draw(modelViewMatrix, this.renderer);
             //this.renderer.render(entity.getMesh(), modelViewMatrix);
