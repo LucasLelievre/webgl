@@ -4,7 +4,7 @@ class CameraTPS extends Camera {
     private distanceFromPlayer: number;
 
     constructor(pos: Float32Array, dir: Float32Array, target: Entity) {
-        super(pos, dir, target);
+        super(target);
 
         // This is how far the camera is from the player
         this.distanceFromPlayer = 5;
@@ -47,6 +47,10 @@ class CameraTPS extends Camera {
             */
         }
     }
+
+    public getView(): Float32Array {
+        return mat4.lookAt(mat4.create(), this.getPos(), this.getTarget().getPos(), vec3.fromValues(0.0, 1.0, 0.0));
+    }
     
     /**
      * 
@@ -55,7 +59,7 @@ class CameraTPS extends Camera {
      */
     public draw(modelViewMatrix: Float32Array, renderer: Renderer): void {
         //TODO tps cam draw
-        super.draw(modelViewMatrix, renderer);
+        //super.draw(modelViewMatrix, renderer);
     }
     
 }
