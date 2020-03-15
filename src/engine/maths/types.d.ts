@@ -1,10 +1,13 @@
 declare class mat4 {
-  static create(): Float32List;
+  static create(): Float32Array;
+  static copy(out: Float32Array, a: Float32Array): void;
   static perspective(out: Float32List, fov: number, ratio: number, near: number, far: number): void;
-  static identity(out: Float32List): void;
+  static identity(out: Float32List): Float32Array;
   static translate(out: Float32List, int: Float32List, pos: Float32Array): void;
   static scale(out: Float32List, int: Float32List, size: Float32Array): void;
   static rotate(out: Float32List, int: Float32List, radian: number, axis: Float32Array): void;
+
+  static lookAt(out: Float32List, eye: Float32List, center: Float32List, up: Float32List): Float32Array;
 }
 
 declare class vec2 {
@@ -17,6 +20,7 @@ declare class vec2 {
 }
 
 declare class vec3 {
+  static create(): Float32Array;
   static fromValues(x: number, y: number, z: number): Float32Array;
   static set(out: Float32Array, x: number, y: number, z: number): void;
   static copy(out: Float32Array, input: Float32Array): void;
