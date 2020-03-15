@@ -1,17 +1,17 @@
 class CameraTPS extends Camera {
 
-    private relativePos: Float32Array;
+    //private relativePos: Float32Array;
     private distanceFromPlayer: number;
 
-    constructor(pos: Float32Array, dir: Float32Array, target: Entity) {
+    constructor(distance: number, target: Entity) {
         super(target);
 
         // This is how far the camera is from the player
-        this.distanceFromPlayer = 5;
-        // This is the 
-        this.relativePos = vec3.fromValues(0, 0, 0);
-        vec3.subtract(this.relativePos, pos, target.getPos());
-        //TODO tsp cam new
+        this.distanceFromPlayer = distance;
+
+        // This is the relative position
+        //this.relativePos = vec3.create();
+        //vec3.subtract(this.relativePos, vec3.fromValues(0, 0, this.distanceFromPlayer), target.getPos());
     }
 
     /**
@@ -25,9 +25,15 @@ class CameraTPS extends Camera {
         super.update(deltaTime, mousePos, mouseButts, keys);
         if (mouseButts[0]) {
 
-            // Set the camera at the target's position
-            // Rotate the camera to where we want to look (with the mouse pos)
-            // translate the camera back a certain length
+            console.log(this.getPos());
+            
+
+            var relativePos = vec3.fromValues(0.0, 0.0, this.distanceFromPlayer);
+            // Rotate the relative vector based on mouse input
+            vec3.rotateX(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[1] * Math.PI / 180);
+            vec3.rotateY(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[0] * Math.PI / 180);
+            // set the cam pos to player pos + cam relativ pos
+            vec3.add(this.getPos(), this.getTarget().getPos(), relativePos);
 
             /*TODO This should be in the player's update
             if (keys.indexOf("A") != -1) vec3.add(this.getPos(), this.getPos(), vec3.fromValues(0.1, 0.0, 0.0)); // left
