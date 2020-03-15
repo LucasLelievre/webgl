@@ -1,6 +1,7 @@
 class GameWorld {
 
     private gameEntities: Entity[];
+    private player: Player;
     private camera: Camera;
     private renderer: Renderer;
     private mouse: Mouse;
@@ -11,7 +12,8 @@ class GameWorld {
         //TODO tree for physics
         this.gameEntities = [];
 
-        this.camera = new Camera(vec3.fromValues(0, -1, 0), vec3.fromValues(0, 0, 0));
+        this.player = new Player(vec3.fromValues(0, 0, -7), vec3.fromValues(0, 0, 1));
+        this.camera = new CameraTPS(5, this.player);
 
         this.renderer = new Renderer();
 
@@ -27,9 +29,8 @@ class GameWorld {
      */
     private init(): void {
         // Here are the entities that will be part of the game
-
-        this.addGameEntity(new Player(vec3.fromValues(0, 0, -7), vec3.fromValues(0, 0, 1)));
-        this.addGameEntity(new Wall(vec3.fromValues(0, -1, -7), vec3.fromValues(1, 0, 0), vec3.fromValues(3, 0.1, 2)));
+        this.addGameEntity(this.player);
+        this.addGameEntity(new Wall(vec3.fromValues(0, -1, 0), vec3.fromValues(1, 0, 0), vec3.fromValues(3, 0.1, 2)));
     }
 
     /**
@@ -60,10 +61,10 @@ class GameWorld {
     public update(deltaTime: number): void {
         //console.log(this.mouse.getPos());
 
-        this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         this.gameEntities.forEach(entity => {
             entity.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
         });
+        this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
     }
 
     /**
