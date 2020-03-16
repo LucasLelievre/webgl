@@ -16,7 +16,12 @@ class Player extends Entity {
     public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]) {
         super.update(deltaTime, mousePos, mouseButts, keys);
         // Update the entity
-        //TODO movement based on keys
+        /*TODO movement based on keys
+        if (keys.indexOf("A") != -1) vec3.add(this.getPos(), this.getPos(), vec3.fromValues(0.1, 0.0, 0.0)); // left
+        if (keys.indexOf("D") != -1) vec3.subtract(this.getPos(), this.getPos(), vec3.fromValues(0.1, 0.0, 0.0)); // right
+        if (keys.indexOf("S") != -1) vec3.subtract(this.getPos(), this.getPos(), vec3.fromValues(0.0, 0.0, 0.1)); // forward
+        if (keys.indexOf("W") != -1) vec3.add(this.getPos(), this.getPos(), vec3.fromValues(0.0, 0.0, 0.1)); // backward
+        */
     }
 
     /**
