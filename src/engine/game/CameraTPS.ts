@@ -22,20 +22,19 @@ class CameraTPS extends Camera {
         super.update(deltaTime, mousePos, mouseButts, keys);
 
         if (mouseButts[0]) {
-
+            
+            // bound the mouse position.
+            if (mousePos[1] > 89) mousePos[1] = 89;
+            if (mousePos[1] < -89) mousePos[1] = -89;
+            if (mousePos[0] > 180) mousePos[0] = -180;
+            if (mousePos[0] < -180) mousePos[0] = 180;
+            
             var relativePos = vec3.fromValues(0.0, 0.0, this.distanceFromPlayer);
             // Rotate the relative vector based on mouse input
             vec3.rotateX(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[1] * Math.PI / 180);
             vec3.rotateY(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[0] * Math.PI / 180);
             // set the cam pos to player pos + cam relativ pos
             vec3.add(this.getPos(), this.getTarget().getPos(), relativePos);
-
-            /*FIXME
-            if (this.getDir()[1] >= 360) vec3.set(this.getDir(), this.getDir()[0], this.getDir()[1] - 360, 0.0);
-            if (this.getDir()[1] < 0) vec3.set(this.getDir(), this.getDir()[0], this.getDir()[1] + 360, 0.0);
-            if (this.getDir()[0] > 90) vec3.set(this.getDir(), 90, this.getDir()[1], 0.0);
-            if (this.getDir()[0] < - 90) vec3.set(this.getDir(), -90, this.getDir()[1], 0.0);
-            */
         }
     }
 
