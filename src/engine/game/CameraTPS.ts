@@ -1,12 +1,24 @@
 class CameraTPS extends Camera {
 
     private distanceFromPlayer: number;
+    private rotationSpeed: number;
+    private boundX: number;
+    private boundY: number;
 
-    constructor(distance: number, target: Entity) {
+    /**
+     * Creates a new Third Person Camera
+     * @param target the GameEntity that the camera will look at and follow
+     * @param distance the distance between the camera and the target
+     * @param rotationSpeed the speed of rotation, between 1 and 10
+     */
+    constructor(target: Entity, distance: number, rotationSpeed: number) {
         super(target);
 
         // This is how far the camera is from the player
-        this.distanceFromPlayer = distance;
+        this.distanceFromPlayer = -distance;
+        this.rotationSpeed = -(rotationSpeed - 11);
+        this.boundX = 180;
+        this.boundY = 89;
 
         vec3.add(this.getPos(), this.getTarget().getPos(), vec3.fromValues(0.0, 0.0, this.distanceFromPlayer));
     }
@@ -22,17 +34,17 @@ class CameraTPS extends Camera {
         super.update(deltaTime, mousePos, mouseButts, keys);
 
         if (mouseButts[0]) {
-            
+
             // bound the mouse position.
-            if (mousePos[1] > 89) mousePos[1] = 89;
-            if (mousePos[1] < -89) mousePos[1] = -89;
-            if (mousePos[0] > 180) mousePos[0] = -180;
-            if (mousePos[0] < -180) mousePos[0] = 180;
-            
+            if (mousePos[1] > this.boundY * this.rotationSpeed) mousePos[1] = this.boundY * this.rotationSpeed;
+            if (mousePos[1] < -this.boundY * this.rotationSpeed) mousePos[1] = -this.boundY * this.rotationSpeed;
+            if (mousePos[0] > this.boundX * this.rotationSpeed) mousePos[0] = -this.boundX * this.rotationSpeed;
+            if (mousePos[0] < -this.boundX * this.rotationSpeed) mousePos[0] = this.boundX * this.rotationSpeed;
+
             var relativePos = vec3.fromValues(0.0, 0.0, this.distanceFromPlayer);
             // Rotate the relative vector based on mouse input
-            vec3.rotateX(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[1] * Math.PI / 180);
-            vec3.rotateY(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[0] * Math.PI / 180);
+            vec3.rotateX(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[1] * Math.PI / 180 / this.rotationSpeed);
+            vec3.rotateY(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[0] * Math.PI / 180 / this.rotationSpeed);
             // set the cam pos to player pos + cam relativ pos
             vec3.add(this.getPos(), this.getTarget().getPos(), relativePos);
         }
@@ -41,7 +53,7 @@ class CameraTPS extends Camera {
     public getView(): Float32Array {
         return mat4.lookAt(mat4.create(), this.getPos(), this.getTarget().getPos(), vec3.fromValues(0.0, 1.0, 0.0));
     }
-    
+
     /**
      * 
      * @param modelViewMatrix Matrix to go from model to view space
@@ -51,5 +63,5 @@ class CameraTPS extends Camera {
         //TODO tps cam draw
         //super.draw(modelViewMatrix, renderer);
     }
-    
+
 }
