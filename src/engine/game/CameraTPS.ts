@@ -18,7 +18,7 @@ class CameraTPS extends Camera {
         this.distanceFromPlayer = -distance;
         this.rotationSpeed = -(rotationSpeed - 11);
         this.boundX = 180;
-        this.boundY = 89;
+        this.boundY = 50;
 
         vec3.add(this.getPos(), this.getTarget().getPos(), vec3.fromValues(0.0, 0.0, this.distanceFromPlayer));
     }
@@ -44,7 +44,7 @@ class CameraTPS extends Camera {
             var relativePos = vec3.fromValues(0.0, 0.0, this.distanceFromPlayer);
             // Rotate the relative vector based on mouse input
             vec3.rotateX(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[1] * Math.PI / 180 / this.rotationSpeed);
-            vec3.rotateY(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), mousePos[0] * Math.PI / 180 / this.rotationSpeed);
+            vec3.rotateY(relativePos, relativePos, vec3.fromValues(0.0, 0.0, 0.0), -mousePos[0] * Math.PI / 180 / this.rotationSpeed);
             // set the cam pos to player pos + cam relativ pos
             vec3.add(this.getPos(), this.getTarget().getPos(), relativePos);
         }

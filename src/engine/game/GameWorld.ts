@@ -13,7 +13,7 @@ class GameWorld {
         this.gameEntities = [];
 
         this.player = new Player(vec3.fromValues(0, 0, -7), vec3.fromValues(0, 0, 1));
-        this.camera = new CameraTPS(this.player, 5, 2);
+        this.camera = new CameraTPS(this.player, 10, 9);
 
         this.renderer = new Renderer();
 
