@@ -16,7 +16,7 @@ class CameraTPS extends Camera {
 
         // This is how far the camera is from the player
         this.distanceFromPlayer = -distance;
-        this.rotationSpeed = -(rotationSpeed - 11);
+        this.rotationSpeed = 11 - rotationSpeed;
         this.boundX = 180;
         this.boundY = 50;
 
@@ -36,10 +36,8 @@ class CameraTPS extends Camera {
         if (mouseButts[0]) {
 
             // bound the mouse position.
-            if (mousePos[1] > this.boundY * this.rotationSpeed) mousePos[1] = this.boundY * this.rotationSpeed;
-            if (mousePos[1] < -this.boundY * this.rotationSpeed) mousePos[1] = -this.boundY * this.rotationSpeed;
-            if (mousePos[0] > this.boundX * this.rotationSpeed) mousePos[0] = -this.boundX * this.rotationSpeed;
-            if (mousePos[0] < -this.boundX * this.rotationSpeed) mousePos[0] = this.boundX * this.rotationSpeed;
+            mousePos[1] = Math.min(Math.max(mousePos[1], -this.boundY * this.rotationSpeed), this.boundY * this.rotationSpeed);
+            mousePos[0] = Math.min(Math.max(mousePos[0], -this.boundX * this.rotationSpeed), this.boundX * this.rotationSpeed);
 
             var relativePos = vec3.fromValues(0.0, 0.0, this.distanceFromPlayer);
             // Rotate the relative vector based on mouse input
