@@ -1,9 +1,11 @@
 class Keyboard {
 
     private keys: string[];
+    private isQwerty: boolean;
 
     constructor() {
         this.keys = [];
+        this.isQwerty = true;
     }
 
     public keyDown(keyCode: string): void {
@@ -16,5 +18,9 @@ class Keyboard {
 
     public getKeys(): string[] {
         return this.keys;
+    }
+
+    public setMode(mode: boolean){
+        this.isQwerty = mode;
     }
 }
