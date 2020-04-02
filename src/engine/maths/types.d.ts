@@ -1,6 +1,6 @@
 declare class mat4 {
   static create(): Float32Array;
-  static copy(out: Float32Array, a: Float32Array): void;
+  static copy(out: Float32Array, a: Float32Array): Float32Array;
   static perspective(out: Float32List, fov: number, ratio: number, near: number, far: number): void;
   static identity(out: Float32List): Float32Array;
   static translate(out: Float32List, int: Float32List, pos: Float32Array): void;
