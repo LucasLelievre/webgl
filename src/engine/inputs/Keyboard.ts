@@ -1,11 +1,27 @@
 class Keyboard {
 
+    public static up: string;
+    public static down: string;
+    public static left: string;
+    public static right: string;
+    public static use: string;
+    public static reload: string;
+
     private keys: string[];
     private isQwerty: boolean;
 
     constructor() {
         this.keys = [];
-        this.isQwerty = true;
+        this.isQwerty = false;
+        Keyboard.up = "Z";
+        Keyboard.down = "S";
+        Keyboard.left = "Q";
+        Keyboard.right = "D";
+        Keyboard.use = "E";
+        Keyboard.reload = "R";
+
+        
+        this.setMode(true);
     }
 
     public keyDown(keyCode: string): void {
@@ -22,5 +38,7 @@ class Keyboard {
 
     public setMode(mode: boolean){
         this.isQwerty = mode;
+        mode ? Keyboard.up = "W" : Keyboard.up = "Z";
+        mode ? Keyboard.left = "A" : Keyboard.left = "Q";
     }
 }
