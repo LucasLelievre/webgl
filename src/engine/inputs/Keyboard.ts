@@ -21,7 +21,7 @@ class Keyboard {
         Keyboard.reload = "R";
 
         
-        this.setMode(true);
+        this.switchMode();
     }
 
     public keyDown(keyCode: string): void {
@@ -36,9 +36,9 @@ class Keyboard {
         return this.keys;
     }
 
-    public setMode(mode: boolean){
-        this.isQwerty = mode;
-        mode ? Keyboard.up = "W" : Keyboard.up = "Z";
-        mode ? Keyboard.left = "A" : Keyboard.left = "Q";
+    public switchMode(){
+        this.isQwerty = !this.isQwerty;
+        this.isQwerty ? Keyboard.up = "W" : Keyboard.up = "Z";
+        this.isQwerty ? Keyboard.left = "A" : Keyboard.left = "Q";
     }
 }
