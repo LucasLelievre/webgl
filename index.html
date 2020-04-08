@@ -11,10 +11,15 @@
         border: 0;
         overflow: hidden; /*  Disable scrollbars */
         display: block;  /* No floating content on sides */
+        position: relative;
+      }
+      #overlay {
+        position: absolute;
       }
     </style>
   </head>
   <body>
+    <div id="overlay"></div>
     <canvas id="glCanvas" width="500" height="500"></canvas>
 
     <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>

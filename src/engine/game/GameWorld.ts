@@ -7,6 +7,8 @@ class GameWorld {
     private mouse: Mouse;
     private keyboard: Keyboard;
 
+    private uiLayer: UILayer;
+
 
     constructor() {
         //TODO tree for physics
