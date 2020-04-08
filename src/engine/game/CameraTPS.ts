@@ -35,7 +35,9 @@ class CameraTPS extends Camera {
 
         // bound the mouse position.
         mousePos[1] = Math.min(Math.max(mousePos[1], -this.boundY * this.rotationSpeed), this.boundY * this.rotationSpeed);
-        mousePos[0] = Math.min(Math.max(mousePos[0], -this.boundX * this.rotationSpeed), this.boundX * this.rotationSpeed);
+        //FIXME
+        mousePos[0] = mousePos[0] > this.boundX * this.rotationSpeed ? -this.boundX * this.rotationSpeed : (mousePos[0] < -this.boundX * this.rotationSpeed ? this.boundX * this.rotationSpeed : mousePos[0]);
+        //mousePos[0] = Math.min(Math.max(mousePos[0], -this.boundX * this.rotationSpeed), this.boundX * this.rotationSpeed);
 
         var relativePos = vec3.fromValues(0.0, 0.0, this.distanceFromPlayer);
         // Rotate the relative vector based on mouse input
