@@ -1,17 +1,26 @@
 class UILayer {
 
-    private div: HTMLDivElement;
+    private overlay: HTMLDivElement;
+
+    private html: string;
 
     constructor(){
-        this.div = document.querySelector("#overlayer") as HTMLDivElement;
+        this.overlay = document.querySelector("#overlay") as HTMLDivElement;
+        this.html = "";
+        //this.setLayer();
     }
 
     public setLayer(): void {
-        this.div.innerHTML = "wesh";
         //empty the overlay div and adds the ui elements
+        this.overlay.style.color = "white";
+        this.html = "this is UI";
+    }
+
+    public update(): void {
+        //updates with new values
     }
 
     public draw(): void {
-        //updates with new values
+        this.overlay.innerHTML = this.html;
     }
 }

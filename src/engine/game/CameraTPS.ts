@@ -35,7 +35,7 @@ class CameraTPS extends Camera {
 
         // bound the mouse position.
         mousePos[1] = Math.min(Math.max(mousePos[1], -this.boundY * this.rotationSpeed), this.boundY * this.rotationSpeed);
-        //FIXME
+        //FIXME this isn't great is it
         mousePos[0] = mousePos[0] > this.boundX * this.rotationSpeed ? -this.boundX * this.rotationSpeed : (mousePos[0] < -this.boundX * this.rotationSpeed ? this.boundX * this.rotationSpeed : mousePos[0]);
         //mousePos[0] = Math.min(Math.max(mousePos[0], -this.boundX * this.rotationSpeed), this.boundX * this.rotationSpeed);
 

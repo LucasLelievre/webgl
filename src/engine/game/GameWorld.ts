@@ -18,6 +18,8 @@ class GameWorld {
         this.camera = new CameraTPS(this.player, 10, 9);
 
         this.renderer = new Renderer();
+        this.uiLayer = new UILayer();
+        this.uiLayer.setLayer();
 
         this.mouse = new Mouse();
 
@@ -64,6 +66,7 @@ class GameWorld {
         if (this.mouse.getButts()[0]) {
             this.gameEntities.forEach(entity =>  entity.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys()) );
             this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
+            this.uiLayer.update();
         }
     }
 
@@ -84,6 +87,9 @@ class GameWorld {
         const lookAt = this.camera.getView();
         
         this.gameEntities.forEach(entity => entity.draw(mat4.copy(mat4.create(), lookAt), this.renderer) );
+        
+        this.mouse.getButts()[0] ? this.uiLayer.draw() : this.mainMenu.draw();
+
     }
 
     public getMouse() {
