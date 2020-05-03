@@ -8,6 +8,7 @@ class GameWorld {
     private keyboard: Keyboard;
 
     private uiLayer: UILayer;
+    private mainMenu: UILayer;
 
 
     constructor() {
@@ -18,8 +19,10 @@ class GameWorld {
         this.camera = new CameraTPS(this.player, 10, 9);
 
         this.renderer = new Renderer();
+
         this.uiLayer = new UILayer();
-        this.uiLayer.setLayer();
+        this.uiLayer.addElement(new UIElement("HP : ", this.player.getHp()));
+        this.mainMenu = new UILayer();
 
         this.mouse = new Mouse();
 

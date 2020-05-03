@@ -4,16 +4,18 @@ class UILayer {
 
     private html: string;
 
-    constructor(){
-        this.overlay = document.querySelector("#overlay") as HTMLDivElement;
+    private uiElements: Array<UIElement>;
+
+    constructor() {
         this.html = "";
-        //this.setLayer();
+        this.overlay = document.querySelector("#overlay") as HTMLDivElement;
+        this.overlay.style.color = "white";
+
+        this.uiElements = new Array<UIElement>();
     }
 
-    public setLayer(): void {
-        //empty the overlay div and adds the ui elements
-        this.overlay.style.color = "white";
-        this.html = "this is UI";
+    public addElement(element: UIElement): void {
+        this.uiElements.push(element);
     }
 
     public update(): void {
@@ -21,6 +23,12 @@ class UILayer {
     }
 
     public draw(): void {
+        this.html = "";
+        this.uiElements.forEach(element => {
+            this.html += element.getHtmlCode() + Object.values(element.getGameValue())[0];
+        });
+        console.log(this.html);
+        
         this.overlay.innerHTML = this.html;
     }
 }
