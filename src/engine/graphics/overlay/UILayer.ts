@@ -27,8 +27,6 @@ class UILayer {
         this.uiElements.forEach(element => {
             this.html += element.getHtmlCode() + Object.values(element.getGameValue())[0];
         });
-        console.log(this.html);
-        
         this.overlay.innerHTML = this.html;
     }
 }
