@@ -78,7 +78,7 @@ class GameWorld {
                     this.camera = new CameraFPS(this.player);
             }
             
-                this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
+            this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
             this.uiLayer.update();
         }
     }
@@ -90,10 +90,10 @@ class GameWorld {
 
         this.resizeViewport();
 
-        Main.getGlContext().clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
-        Main.getGlContext().clearDepth(1.0);                 // Clear everything
-        Main.getGlContext().enable(Main.getGlContext().DEPTH_TEST);           // Enable depth testing
-        Main.getGlContext().depthFunc(Main.getGlContext().LEQUAL);            // TODO what is this
+        Main.getGlContext().clearColor(0.0, 0.0, 0.0, 1.0);                 // Clear to black, fully opaque
+        Main.getGlContext().clearDepth(1.0);                                // Clear everything
+        Main.getGlContext().enable(Main.getGlContext().DEPTH_TEST);         // Enable depth testing
+        Main.getGlContext().depthFunc(Main.getGlContext().LEQUAL);          // TODO what is this
 
         Main.getGlContext().clear(Main.getGlContext().COLOR_BUFFER_BIT | Main.getGlContext().DEPTH_BUFFER_BIT);
 

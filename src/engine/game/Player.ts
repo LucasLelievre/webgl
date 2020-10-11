@@ -15,8 +15,8 @@ class Player extends Entity {
      */
     public update(deltaTime: number, mousePos: Float32Array, mouseButts: boolean[], keys: string[]) {
         super.update(deltaTime, mousePos, mouseButts, keys);
-        // Update the entity
-        //TODO movement based on keys
+        
+        //TODO movement based on physics
         if (keys.indexOf(Keyboard.left) != -1)
             vec3.add(this.getPos(), this.getPos(), vec3.fromValues(this.speed, 0.0, 0.0)); // left
         if (keys.indexOf(Keyboard.right) != -1)
@@ -37,10 +37,16 @@ class Player extends Entity {
         super.draw(modelViewMatrix, renderer);
     }
 
+    /**
+     * Make the player attack
+     */
     public strike() {
         // Strike
     }
 
+    /**
+     * Returns the player's hp
+     */
     public getHp(): object {
         return this.hp;
     }
