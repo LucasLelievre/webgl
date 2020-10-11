@@ -71,7 +71,6 @@ class GameWorld {
 
             //TODO this isn't really the place to do that. Maybe in the Camera class ?
             if (this.keyboard.getKeys().indexOf(Keyboard.switchView) != -1) {
-                console.log(this.camera.getType());
                 if (this.camera.getType() == "f")
                     this.camera = new CameraTPS(this.player, 10, 9)
                 else 
