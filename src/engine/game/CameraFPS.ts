@@ -14,6 +14,11 @@ class CameraFPS extends Camera {
         return mat4.identity(mat4.create());
     }
     
+    //TODO comment function
+    public getType(): String {
+        return "f";
+    }
+    
     public draw(modelViewMatrix: Float32Array, renderer: Renderer): void {
         //super.draw(modelViewMatrix, renderer);
         //TODO fps cam draw

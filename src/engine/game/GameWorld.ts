@@ -68,7 +68,17 @@ class GameWorld {
     public update(deltaTime: number): void {
         if (this.mouse.getButts()[0]) {
             this.gameEntities.forEach(entity =>  entity.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys()) );
-            this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
+
+            //TODO this isn't really the place to do that. Maybe in the Camera class ?
+            if (this.keyboard.getKeys().indexOf(Keyboard.switchView) != -1) {
+                console.log(this.camera.getType());
+                if (this.camera.getType() == "f")
+                    this.camera = new CameraTPS(this.player, 10, 9)
+                else 
+                    this.camera = new CameraFPS(this.player);
+            }
+            
+                this.camera.update(deltaTime, this.mouse.getPos(), this.mouse.getButts(), this.keyboard.getKeys());
             this.uiLayer.update();
         }
     }

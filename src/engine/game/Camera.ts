@@ -21,4 +21,6 @@ abstract class Camera extends Entity {
     public getTarget(): Entity {
         return this.target;
     }
+
+    public abstract getType(): String;
 }
