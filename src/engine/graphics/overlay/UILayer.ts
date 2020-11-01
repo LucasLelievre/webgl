@@ -25,7 +25,7 @@ class UILayer {
     public draw(): void {
         this.html = "";
         this.uiElements.forEach(element => {
-            this.html += element.getHtmlCode() + Object.values(element.getGameValue())[0];
+            this.html += element.getHtml1Code() + Object.values(element.getGameValue())[0] + element.getHtml2Code();
         });
         this.overlay.innerHTML = this.html;
     }

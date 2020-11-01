@@ -1,5 +1,7 @@
 class GameWorld {
 
+    private isPaused: boolean;
+
     private gameEntities: Entity[];
     private player: Player;
     private camera: Camera;
@@ -13,6 +15,8 @@ class GameWorld {
 
     constructor() {
         //TODO tree for physics
+        this.isPaused = true;
+
         this.gameEntities = [];
 
         this.player = new Player(vec3.fromValues(0, 0, -7), vec3.fromValues(0, 0, 1));
@@ -21,8 +25,9 @@ class GameWorld {
         this.renderer = new Renderer();
 
         this.uiLayer = new UILayer();
-        this.uiLayer.addElement(new UIElement("HP : ", this.player.getHp()));
+        this.uiLayer.addElement(new UIElement("HP : ", this.player.getHp(), ""));
         this.mainMenu = new UILayer();
+        this.mainMenu.addElement(new UIElement("GAME PAUSED <div style=\"display: none\">", {}, "</div>"));
 
         this.mouse = new Mouse();
 
@@ -91,7 +96,10 @@ class GameWorld {
         
         this.gameEntities.forEach(entity => entity.draw(mat4.copy(mat4.create(), lookAt), this.renderer) );
         
-        this.mouse.getButts()[0] ? this.uiLayer.draw() : this.mainMenu.draw();
+        if (this.isPaused != this.mouse.getButts()[0]) {
+            this.isPaused = this.mouse.getButts()[0];
+            this.mouse.getButts()[0] ? this.uiLayer.draw() : this.mainMenu.draw();
+        }
 
     }
 
