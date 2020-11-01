@@ -5,6 +5,7 @@ class Keyboard {
     public static left: string;
     public static right: string;
     public static use: string;
+    public static switchView: string;
     public static reload: string;
 
     private keys: string[];
@@ -18,6 +19,7 @@ class Keyboard {
         Keyboard.left = "Q";
         Keyboard.right = "D";
         Keyboard.use = "E";
+        Keyboard.switchView = "V";
         Keyboard.reload = "R";
 
         

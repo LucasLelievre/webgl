@@ -9,9 +9,14 @@ class CameraFPS extends Camera {
         //TODO fps cam update
     }
 
+
     public getView(): Float32Array {
         //TODO return the lookAt matrix
         return mat4.identity(mat4.create());
+    }
+    
+    public getType(): String {
+        return "f";
     }
     
     public draw(modelViewMatrix: Float32Array, renderer: Renderer): void {

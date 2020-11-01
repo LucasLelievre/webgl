@@ -50,9 +50,13 @@ class CameraTPS extends Camera {
     public getView(): Float32Array {
         return mat4.lookAt(mat4.create(), this.getPos(), this.getTarget().getPos(), vec3.fromValues(0.0, 1.0, 0.0));
     }
+    
+    public getType(): String {
+        return "t";
+    }
 
     /**
-     * 
+     * Draw function for rendering
      * @param modelViewMatrix Matrix to go from model to view space
      * @param renderer Renderer used to render the entities
      */

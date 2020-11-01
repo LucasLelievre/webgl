@@ -11,8 +11,6 @@ class Shader {
     private fragmentShader: string;
 
     constructor() {
-        //TODO select the shader with a path
-
         this.vertexShader = simpleVert;
         this.fragmentShader = simpleFrag;
 
