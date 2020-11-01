@@ -86,6 +86,7 @@ class GameWorld {
             this.uiLayer.update();
         }
     }
+    //this is a test
 
     /**
      * Draw all the game's entites
